@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-// import { SpinnerComponent } from './shared/spinner.component';
+import { Component } from '@angular/core';import { SpinnerComponent } from './shared/spinner.component';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -7,8 +6,7 @@ import { RouterOutlet } from '@angular/router';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     standalone: true,
-    imports: [RouterOutlet]
-    // imports: [RouterOutlet, SpinnerComponent]
+    imports: [RouterOutlet, SpinnerComponent]
 })
 export class AppComponent {
   title = 'app';
