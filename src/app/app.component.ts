@@ -1,0 +1,15 @@
+import { Component } from '@angular/core';
+// import { SpinnerComponent } from './shared/spinner.component';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: true,
+    imports: [RouterOutlet]
+    // imports: [RouterOutlet, SpinnerComponent]
+})
+export class AppComponent {
+  title = 'app';
+}
