@@ -5,7 +5,7 @@ import { importProvidersFrom } from '@angular/core';
 import { AppComponent } from './app/app.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { Approutes } from './app/app.routes';
+import { routes } from './app/app.routes';
 import { provideRouter } from '@angular/router';
 import { allIcons } from 'angular-feather/icons';
 import { FeatherModule } from 'angular-feather';
@@ -27,7 +27,7 @@ bootstrapApplication(AppComponent, {
         })),
         provideAnimations(),
         provideHttpClient(withInterceptorsFromDi()),
-        provideRouter(Approutes),
+        provideRouter(routes),
         provideHttpClient(withInterceptorsFromDi()),
     ]
 })
