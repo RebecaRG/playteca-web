@@ -14,14 +14,26 @@
     <table class="table table-striped">
         <thead>
             <tr class="table-dark">
-                <th scope="col">Título</th>
-                <th scope="col">Autor/a</th>
-                <th scope="col">Editorial</th>
-                <th scope="col">Personas</th>
-                <th scope="col">Minutos</th>
-                <th scope="col">Edad</th>
-                <th scope="col"></th>
-            </tr>
+            <th scope="col" (click)="sort('titulo')"
+                [class.asc]="sortState.column === 'titulo' && sortState.direction === 'asc'"
+                [class.desc]="sortState.column === 'titulo' && sortState.direction === 'desc'">Título</th>              
+            <th scope="col" (click)="sort('autoria')"
+                [class.asc]="sortState.column === 'autoria' && sortState.direction === 'asc'"
+                [class.desc]="sortState.column === 'autoria' && sortState.direction === 'desc'">Autor/a</th>
+            <th scope="col" (click)="sort('editorial')"
+                [class.asc]="sortState.column === 'editorial' && sortState.direction === 'asc'"
+                [class.desc]="sortState.column === 'editorial' && sortState.direction === 'desc'">Editorial</th>
+            <th scope="col" (click)="sort('participantes_min')"
+                [class.asc]="sortState.column === 'participantes_min' && sortState.direction === 'asc'"
+                [class.desc]="sortState.column === 'participantes_min' && sortState.direction === 'desc'">Personas</th>
+            <th scope="col" (click)="sort('duracion_minutos')"
+                [class.asc]="sortState.column === 'duracion_minutos' && sortState.direction === 'asc'"
+                [class.desc]="sortState.column === 'duracion_minutos' && sortState.direction === 'desc'">Minutos</th>
+            <th scope="col" (click)="sort('edad_min')"
+                [class.asc]="sortState.column === 'edad_min' && sortState.direction === 'asc'"
+                [class.desc]="sortState.column === 'edad_min' && sortState.direction === 'desc'">Edad</th>
+            <th scope="col"></th>
+                </tr>
         </thead>
         <tbody>
    

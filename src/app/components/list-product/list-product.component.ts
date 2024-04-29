@@ -5,6 +5,7 @@ import { ProductService } from '../../services/product.service';
 import { FormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'; 
 import { CommonModule } from '@angular/common';
+
 // import { ProgressBarComponent } from '../../shared/progress-bar/progress-bar.component';
 // import { ToastrService } from 'ngx-toastr';
 
@@ -31,6 +32,9 @@ export class ListProductComponent implements OnInit {
   };
   page = 1;
   pageSize = 15;
+  key: string = '';
+  reverse: boolean = false;
+  sortState = { column: null, direction: 'asc' };
 
   private _searchTerm: string = '';
   get searchTerm(): string {
@@ -73,4 +77,34 @@ export class ListProductComponent implements OnInit {
       );
     }
   }
+
+// ... tus otras funciones y métodos ...
+
+compare(v1: string | number, v2: string | number) {
+  if (typeof v1 === 'string' && typeof v2 === 'string') {
+    return v1.localeCompare(v2);
+  } else if (typeof v1 === 'number' && typeof v2 === 'number') {
+    return v1 - v2;
+  } else {
+    return 0;
+  }
+}
+
+sort(key: string) {
+  if (this.sortState.column === key) {
+    this.sortState.direction = this.sortState.direction === 'asc' ? 'desc' : 'asc';
+  } else {
+    this.sortState.column = key;
+    this.sortState.direction = 'asc';
+  }
+
+  this.key = key;
+  this.reverse = this.sortState.direction === 'desc';
+
+  this.filteredProducts = [...this.filteredProducts].sort((a, b) => {
+    const res = this.compare(a[this.key], b[this.key]);
+    return this.reverse ? -res : res;
+  });
+}
+
 }
