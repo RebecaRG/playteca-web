@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';import { SpinnerComponent } from './shared/spinner.component';
+import { Component } from '@angular/core';
+import { SpinnerComponent } from './shared/spinner.component';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
