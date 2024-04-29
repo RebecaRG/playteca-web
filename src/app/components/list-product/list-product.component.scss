@@ -5,6 +5,9 @@
 .btn-i{
     width: 24px; 
     height: 24px;
+    background: none !important; 
+    border: none !important; 
+    padding: 0 !important;
 }
 
 th[sortable].asc, th[sortable].desc{

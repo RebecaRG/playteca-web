@@ -8,8 +8,9 @@
 
         <input class="form-control" placeholder="Busca..." type="text" [(ngModel)]="searchTerm" />
       </div>
+
     <div class="card my-2">
-    @if(filteredProducts.length > 0){
+    @if(filteredProducts.length > 0 ){
     <table class="table table-striped">
         <thead>
             <tr class="table-dark">
@@ -23,7 +24,8 @@
             </tr>
         </thead>
         <tbody>
-            @for(juego of filteredProducts; track $index){
+   
+            @for(juego of filteredProducts | slice: (page - 1) * pageSize : (page - 1) * pageSize + pageSize; track juego){
 
             <tr class="table-default">
                 <td scope="row"><strong>{{juego.titulo}}</strong> ({{juego.fecha_publicacion}})</td>
@@ -34,18 +36,23 @@
                 <td>+ {{juego.edad_min}}</td>
                 <td>
                     <div class="d-flex justify-content-end">
-                        <button type="button" class="btn-i" [routerLink]="['/+info', juego.id_juego]" style="background: none; border: none; padding: 0;">
+                        <button type="button" class="btn-i" [routerLink]="['/+info', juego.id_juego]">
                             <img src="assets/images/icon/info.svg" alt="Más información" >
                         </button>
-                        
+
                     </div>
                 </td> 
 
             </tr>
             }
+        
 
         </tbody>
     </table>
+    <div class="d-flex justify-content-center p-2">
+        <ngb-pagination [collectionSize]="filteredProducts.length" [(page)]="page" [pageSize]="pageSize">
+        </ngb-pagination>
+      </div>
     }
     @else{
     <div class="alert alert-warning" role="alert">

@@ -3,6 +3,8 @@ import { Product, ResponseProducts } from '../../interfaces/product';
 import { RouterLink,  } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { FormsModule } from '@angular/forms';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'; 
+import { CommonModule } from '@angular/common';
 // import { ProgressBarComponent } from '../../shared/progress-bar/progress-bar.component';
 // import { ToastrService } from 'ngx-toastr';
 
@@ -11,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-list-product',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule, NgbPaginationModule, CommonModule],
   // imports: [RouterLink, ProgressBarComponent],
   templateUrl: './list-product.component.html',
   styleUrl: './list-product.component.scss'
@@ -25,7 +27,10 @@ export class ListProductComponent implements OnInit {
     mensaje: '',
     cantidad: 0,
     productos: []
+
   };
+  page = 1;
+  pageSize = 15;
 
   private _searchTerm: string = '';
   get searchTerm(): string {
