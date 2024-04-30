@@ -36,6 +36,7 @@ export class ProductService {
     getProduct(id: number): Observable<Product> {
         return this.http.get<Product>(`${this.myAppUrl}${this.myApiUrl}/${id}?include[]=complejidad&include[]=contexto&include[]=tematizacion&include[]=dinamica&include[]=parte&include[]=componentes`);
     }
+    
 
     // Actualizar un producto
     updateProduct(id: number, product: Product): Observable<void> {
