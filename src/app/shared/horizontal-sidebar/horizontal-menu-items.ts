@@ -29,4 +29,14 @@ export const ROUTES: RouteInfo[] = [
         //   },
          ]
         },
+        {
+            path: '/mapa',
+            title: 'Mapa',
+            icon: 'map',
+            class: '',
+            ddclass: '',
+            extralink: false,
+            submenu: []
+        },
+        
 ];

@@ -34,7 +34,7 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/juegos',
     title: 'Listado juegos',
-    icon: 'Cpu',
+    icon: 'grid',
     class: '',
     extralink: false,
     label: '',
@@ -51,5 +51,16 @@ export const ROUTES: RouteInfo[] = [
       //   submenu: []
       // },
     ]
-  }
+  },
+  {
+    path: '/mapa',
+    title: 'Mapa',
+    icon: 'map',
+    class: '',
+    extralink: false,
+    label: '',
+    labelClass: '',
+      submenu: []
+  },
 ];
+
