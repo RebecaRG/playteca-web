@@ -5,6 +5,7 @@ import { StarterComponent } from './starter/starter.component';
 import { AuthenticationRoutes } from './authentication/authentication.routing';
 import { ListProductComponent } from './components/list-product/list-product.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { MapaComponent } from './components/mapa/mapa.component';
 
 export const routes: Routes = [
     {
@@ -14,7 +15,9 @@ export const routes: Routes = [
             { path: '', redirectTo: '/playteca', pathMatch: 'full' },
             { path: 'playteca', component: StarterComponent },
             { path: 'juegos', component: ListProductComponent },
-            { path: 'juegos/:id', component: ProductDetailComponent}
+            { path: 'juegos/:id', component: ProductDetailComponent},
+            { path: 'mapa', component: MapaComponent},
+
         ],
     },
     {
