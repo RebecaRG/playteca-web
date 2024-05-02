@@ -40,7 +40,6 @@
             ],
             "styles": [
               "src/assets/scss/style.scss",
-              "node_modules/mapbox-gl/dist/mapbox-gl.css", 
               "src/styles.scss"
             ],
             "scripts": []
