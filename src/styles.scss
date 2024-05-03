@@ -34,6 +34,7 @@
     background-color: #64DEAC !important;
     border-color: #64DEAC !important;
 }
+
 #miCalendario .fc-timeGridDay-button:hover {
     box-shadow: 0 10px 10px -5px #64deab64 !important;
 }
@@ -58,4 +59,15 @@
 a.fc-list-day-text,
 a.fc-list-day-side-text {
     color: gray !important;
+}
+
+@media (max-width: 768px) {
+    .fc-header-toolbar {
+        flex-wrap: wrap !important;
+    }
+
+    .fc-header-toolbar>div {
+        flex: 1 0 100% !important;
+        margin-bottom: 10px !important;
+    }
 }
