@@ -62,5 +62,15 @@ export const ROUTES: RouteInfo[] = [
     labelClass: '',
       submenu: []
   },
+  {
+    path: '/calendario',
+    title: 'Calendario',
+    icon: 'calendar',
+    class: '',
+    extralink: false,
+    label: '',
+    labelClass: '',
+      submenu: []
+  },
 ];
 

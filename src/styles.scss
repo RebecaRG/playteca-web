@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+#miCalendario .fc-daygrid-day-number {
+    font-size: 20px;
+    color: #a9a9a9;
+}
+
+#miCalendario .fc-button {
+    background-color: #6352ca !important;
+    border-color: #6352ca !important;
+}
+
+#miCalendario .fc-button:hover {
+    box-shadow: 0 10px 10px -5px #6452ca68 !important;
+}
+
+#miCalendario .fc-dayGridMonth-button {
+    background-color: #61A2F8 !important;
+    border-color: #61A2F8 !important;
+}
+
+#miCalendario .fc-dayGridMonth-button:hover {
+    box-shadow: 0 10px 10px -5px #61a2f873 !important;
+}
+
+#miCalendario .fc-timeGridWeek-button {
+    background-color: #FFBE4B !important;
+    border-color: #FFBE4B !important;
+}
+
+#miCalendario .fc-timeGridWeek-button:hover {
+    box-shadow: 0 10px 10px -5px #ffbd4b84 !important;
+}
+
+#miCalendario .fc-timeGridDay-button {
+    background-color: #64DEAC !important;
+    border-color: #64DEAC !important;
+}
+#miCalendario .fc-timeGridDay-button:hover {
+    box-shadow: 0 10px 10px -5px #64deab64 !important;
+}
+
+#miCalendario .fc-listWeek-button {
+    background-color: #EF6C6A !important;
+    border-color: #EF6C6A !important;
+}
+
+#miCalendario .fc-listWeek-button:hover {
+    box-shadow: 0 10px 10px -5px #ef6c6a81 !important;
+}
+
+#miCalendario .fc-col-header-cell-cushion {
+    color: gray !important;
+}
+
+#miCalendario .fc-day-today {
+    background-color: #a9a9a91d !important;
+}
+
+a.fc-list-day-text,
+a.fc-list-day-side-text {
+    color: gray !important;
+}

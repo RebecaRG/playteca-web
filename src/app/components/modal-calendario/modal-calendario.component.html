@@ -1,0 +1,26 @@
+<div class="modal-header bg-light-primary">
+  <h4 class="modal-title text-primary" id="modal-warning-title">
+    <dt>{{ event.titulo }}</dt>
+  </h4>
+  <button type="button" class="btn text-primary close" aria-label="Close" (click)="close()">
+    <i class="close-btn">&times;</i>
+  </button>
+</div>
+<div class="modal-body">
+  <dl>
+    <dt>🧭 Lugar:</dt>
+    <dd>{{ event.lugar }}</dd>
+  </dl>
+  <dl>
+    <dt>🗓 Inicio:</dt>
+    <dd>{{ formatDate(event.inicio) }}</dd>
+  </dl>
+  <dl>
+    <dt>🗓 Fin:</dt>
+    <dd>{{ formatDate(event.fin) }}</dd>
+  </dl>
+  <dl>
+    <dt>📢 Más información:</dt>
+    <dd> {{ event.descripcion }}</dd>
+  </dl>
+</div>

@@ -6,6 +6,7 @@ import { AuthenticationRoutes } from './authentication/authentication.routing';
 import { ListProductComponent } from './components/list-product/list-product.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { MapaComponent } from './components/mapa/mapa.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
 
 export const routes: Routes = [
     {
@@ -17,6 +18,8 @@ export const routes: Routes = [
             { path: 'juegos', component: ListProductComponent },
             { path: 'juegos/:id', component: ProductDetailComponent},
             { path: 'mapa', component: MapaComponent},
+            { path: 'calendario', component: CalendarioComponent},
+
 
         ],
     },

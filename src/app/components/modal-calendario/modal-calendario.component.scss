@@ -1,0 +1,9 @@
+.close-btn {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    transition: all 0.3s;
+    &:hover {
+        color: #392f74;
+    }
+}
