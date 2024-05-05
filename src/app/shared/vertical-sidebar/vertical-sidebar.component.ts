@@ -6,6 +6,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { FeatherModule } from 'angular-feather';
+import { AuthService } from 'src/app/services/auth.service';
+
+
 declare var $: any;
 
 @Component({
@@ -29,7 +32,7 @@ export class VerticalSidebarComponent {
     this.notify.emit(!this.showClass);
   }
 
-  constructor(private menuServise: VerticalSidebarService, private router: Router) {
+  constructor(private menuServise: VerticalSidebarService, private router: Router, private authService: AuthService) {
     this.menuServise.items.subscribe(menuItems => {
       this.sidebarnavItems = menuItems;
 
@@ -65,4 +68,17 @@ export class VerticalSidebarComponent {
       behavior: 'smooth'
     });
   }
+
+  logoutUser() {
+    this.authService.logout().subscribe({
+        next: () => {
+            console.log('Sesión cerrada correctamente');
+            this.router.navigate(['/auth/login']); 
+        },
+        error: (error) => {
+            console.error('Error al cerrar la sesión:', error.message);
+        }
+    });
+}
+
 }

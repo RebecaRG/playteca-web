@@ -1,50 +1,127 @@
-<div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(assets/images/background/login-register.jpg) no-repeat center center;">
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center signupStyle">
     <div class="auth-box m-3 m-md-0">
+@if (showError){
+<div class="alert alert-danger alert-dismissible fade show border-0 d-flex align-items-center" role="alert">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+        class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+        <path
+            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </svg>
+    <div>
+        <strong>{{ errorMessage }}</strong>
+    </div>
+
+    <button type="button" class="btn-close" aria-label="Close" data-dismis="alert" (click)="closeAlert()"></button>
+</div>
+} 
+
         <div>
             <div class="text-center">
                 <span class="db"><img src="assets/images/logo-icon.png" alt="logo" /></span>
-                <h5 class="font-medium mb-4">Sign Up to Admin</h5>
+                <h5 class="font-medium mb-2">Registro</h5>
             </div>
             <!-- Form -->
             <div class="row">
+
                 <div class="col-12">
-                    <form class="form-horizontal mt-3" action="index.html">
+                    <form [formGroup]="registerForm" (ngSubmit)="submitDetails()" class="form-horizontal mt-3"
+                        action="index.html">
                         <div class="mb-3 row ">
-                            <div class="col-12 ">
-                                <input class="form-control" type="text" required=" " placeholder="Name">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <div class="col-12 ">
-                                <input class="form-control" type="text" required=" " placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <div class="col-12 ">
-                                <input class="form-control" type="password" required=" " placeholder="Password">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <div class="col-12 ">
-                                <input class="form-control" type="password" required=" " placeholder="Confirm Password">
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <div class="col-md-12 ">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="customCheck1">
-                                    <label class="form-check-label" for="customCheck1">I agree to all <a href="javascript:void(0)">Terms</a></label>
+                            <div class="col-12 form-group">
+                                <input class="form-control" type="text" formControlName="username"
+                                    placeholder="Nombre usuraio/a">
+                                <div class="text-danger mt-1" [hidden]="username.valid || username.pristine">
+                                    <small>
+                                        @if(username.errors?.['required']){ El nombre de usuario/a es necesario }</small>
+                                    <small>
+                                        @if(username.errors?.['pattern']){ Introduce un nombre de usuario/a válido }</small>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="mb-3 row ">
+                            <div class="col-12 form-group">
+                                <input class="form-control" type="text" formControlName="name" placeholder="Nombre">
+                                <div class="text-danger mt-1" [hidden]="name.valid || name.pristine">
+                                    <small>
+                                        @if(name.errors?.['required']){ El nombre es necesario }</small>
+                                    <small>
+                                        @if(name.errors?.['pattern']){ Introduce un nombre válido }</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row ">
+                            <div class="col-12 form-group">
+                                <input class="form-control" type="text" formControlName="surname"
+                                    placeholder="Apellido">
+                                <div class="text-danger mt-1" [hidden]="surname.valid || surname.pristine">
+                                    <small>
+                                        @if(surname.errors?.['required']){ El apellido es necesario }</small>
+                                    <small>
+                                        @if(surname.errors?.['pattern']){ Introduce un apellido válido }</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-12 form-group">
+                                <input class="form-control" type="text" formControlName="email" placeholder="Email">
+                                <div class="text-danger mt-1" [hidden]="email.valid || email.pristine">
+                                    <small> @if(email.errors?.['required']){ El email es necesario }</small>
+                                    <small> @if(email.errors?.['email']){ Introduce un email válido }</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-12 form-group">
+                                <input class="form-control" type="password" formControlName="password"
+                                    placeholder="Contraseña">
+                                <div class="text-danger mt-1" [hidden]="password.valid || password.pristine">
+                                    <small>
+                                        @if(password.errors?.['required']){ La contraseña es necesaria }</small>
+                                    <small>
+                                        @if(password.errors?.['pattern']){ La contraseña es necesaria }</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-12 form-group">
+                                <input class="form-control" type="password" formControlName="confirmPassword"
+                                    placeholder="Confirmar Contraseña">
+                                <div class="text-danger mt-1" [hidden]="!confirmPassword.touched">
+                                    <small>
+                                        @if(confirmPassword.errors?.['required']){ Confirma la contraseña }</small>
+                                    <small>
+                                        @if(registerForm.errors?.['passwordMismatch'] &&
+                                        confirmPassword.valid && password.valid){ Las constraseñas deben coincidir }</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="mb-3 row">
+                            <div class="col-md-12 ">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="customCheck1">
+                                    <label class="form-check-label" for="customCheck1">Estoy de acuerdo con los <a href="javascript:void(0)">Términos legales</a></label>
+                                </div>
+                            </div>
+                        </div> -->
+
                         <div class="mb-3 text-center ">
                             <div class="col-xs-12 mb-4">
-                                <a class="btn d-block w-100 btn-lg btn-info" href="/dashboard/classic">SIGN UP</a>
+                                <button type="submit" class="btn d-block w-100 btn-lg btn-primary"
+                                    [disabled]="registerForm.invalid">
+                                    REGISTRAR
+                                </button>
                             </div>
                         </div>
                         <div class="mb-3 mb-0 mt-2 ">
                             <div class="col-sm-12 text-center ">
-                                Already have an account? <a href="/authentication/login" class="text-info ms-1 "><b>Sign In</b></a>
+                                Tienes una cuenta? <a href="/authentication/login" class="text-success ms-1 "><b>Iniciar
+                                        sesión</b></a>
                             </div>
                         </div>
                     </form>

@@ -9,6 +9,8 @@ import {
 import { TranslateService } from '@ngx-translate/core';
 import { FeatherModule } from 'angular-feather';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { Router} from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 declare var $: any;
 
@@ -129,7 +131,9 @@ export class HorizontalNavigationComponent implements AfterViewInit {
 
   constructor(
     private modalService: NgbModal,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router,
+    private authService: AuthService
   ) {
     translate.setDefaultLang('en');
   }
@@ -140,4 +144,18 @@ export class HorizontalNavigationComponent implements AfterViewInit {
     this.translate.use(lang.code);
     this.selectedLanguage = lang;
   }
+
+  logoutUser() {
+    this.authService.logout().subscribe({
+        next: () => {
+            console.log('Sesión cerrada correctamente');
+            this.router.navigate(['/auth/login']); 
+        },
+        error: (error) => {
+            console.error('Error al cerrar la sesión:', error.message);
+        }
+    });
+}
+
+
 }

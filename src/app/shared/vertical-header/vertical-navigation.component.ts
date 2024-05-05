@@ -8,6 +8,9 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
+
 declare var $: any;
 
 @Component({
@@ -123,7 +126,9 @@ export class VerticalNavigationComponent implements AfterViewInit {
 
   constructor(
     private modalService: NgbModal,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private authService: AuthService,
+    private router: Router
   ) {
     translate.setDefaultLang('en');
   }
@@ -132,6 +137,18 @@ export class VerticalNavigationComponent implements AfterViewInit {
     this.translate.use(lang.code);
     this.selectedLanguage = lang;
   }
+
+  logoutUser() {
+    this.authService.logout().subscribe({
+        next: () => {
+            console.log('Sesión cerrada correctamente');
+            this.router.navigate(['/auth/login']);
+        },
+        error: (error) => {
+            console.error('Error al cerrar la sesión:', error.message);
+        }
+    });
+}
 
   ngAfterViewInit() {}
 }
