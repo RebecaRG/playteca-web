@@ -1,170 +1,148 @@
-@if(product){
-<h2>{{ product.titulo }}</h2>
-@if(product.descripcion){
-<div class="card">
-    <div class="mt-3 mx-4">
-        <p>{{ product.descripcion }}</p>
-    </div>
-</div>
-}
-<div class="card">
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-3">Editorial</dt>
-            <dd class="col-sm-9">{{ product.editorial }}</dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-3">Autor o autora:</dt>
-            <dd class="col-sm-9">{{ product.autoria }}</dd>
-        </dl>
-        @if(product.ilustracion){
-        <dl class="row">
-            <dt class="col-sm-3">Ilustrador o ilustradora:</dt>
-            <dd class="col-sm-9">{{ product.ilustracion }}</dd>
-        </dl>
-        } @if(product.fecha_publicacion){
-        <dl class="row">
-            <dt class="col-sm-3">Año de publicación:</dt>
-            <dd class="col-sm-9">{{ product.fecha_publicacion }}</dd>
-        </dl>
-        }
-        <dl class="row">
-            <dt class="col-sm-3">Número de participantes:</dt>
-            <dd class="col-sm-9">
-                {{ product.participantes_min }} mínimo -
-                {{ product.participantes_max }} máximo
-            </dd>
-        </dl>
-        <dl class="row">
-            <dt class="col-sm-3">Tiempo aprox. de juego:</dt>
-            <dd class="col-sm-9">{{ product.duracion_minutos }} minutos</dd>
-        </dl>
+<div class="row">
+    <!-- Column -->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-success btn-rounded" [routerLink]="['/juegos']">
+                        Listado juegos
+                    </button>
+                </div>
+                <h2 class="card-title titleStyle">{{ product.titulo }}</h2>
+                @if(product.ranking_global){ 
+                    <p><span class="fw-bold">RANKING:</span>{{ product.ranking_global }}</p>
+                } 
+                <div class="row">
+                    @if(product.ruta_imagen){
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="white-box text-center d-flex justify-content-center align-items-center imageStyle">
+                            <img src="{{ product.ruta_imagen }}" class="img-fluid" />
+                        </div>
+                    </div>
 
-        <dl class="row">
-            <dt class="col-sm-3">Edad mínima:</dt>
-            <dd class="col-sm-9">{{ product.edad_min }} años</dd>
-        </dl>
-    </div>
-</div>
+                    }
+                    <div class="col-lg-8 col-md-8 col-sm-6">
+                        @if(product.descripcion){
+                        <p class="p-2-title mt-4">
+                            <i class="fa fa-play-circle text-primary"></i>
+                            <span class="fw-bold"> Descripción: </span>
+                        </p>
 
-<div class="card">
-    @if(product.ean){
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-12">EAN:</dt>
-            <dd class="col-sm-12">{{ product.ean }}</dd>
-        </dl>
-    </div>
-    } @if(product.url){
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-12">URL editorial:</dt>
-            <dd class="col-sm-12">{{ product.url }}</dd>
-        </dl>
-    </div>
-    }
-</div>
+                        <div [innerHTML]="product.descripcion"></div>
+                        }
 
-<div class="card">
-    @if(product.medidas_caja_cm){
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-12">Medidas caja:</dt>
-            <dd class="col-sm-12">{{ product.medidas_caja_cm }}</dd>
-        </dl>
-    </div>
-    } @if(product.peso_gr){
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-12">Peso:</dt>
-            <dd class="col-sm-12">{{ product.peso_gr }} gr.</dd>
-        </dl>
-    </div>
-    }
-</div>
+                        <ul class="list-unstyled my-4">
+                            @if(product.fecha_publicacion){
+                            <li class="my-2">
+                                <i class="fa fa-play-circle text-primary"></i>
+                                <span class="fw-bold"> Año de publicación: </span>
+                                {{ product.fecha_publicacion }}
+                            </li>
+                            }
+                            <li></li>
+                            <li class="my-2">
+                                <i class="fa fa-play-circle text-primary"></i>
+                                <span class="fw-bold"> Editorial: </span>
+                                {{ product.editorial }}
+                            </li>
+                            <li class="my-2">
+                                <i class="fa fa-play-circle text-primary"></i>
+                                <span class="fw-bold"> Autor/a: </span> {{ product.autoria }}
+                            </li>
+                            @if(product.ilustracion){
+                            <li class="my-2">
+                                <i class="fa fa-play-circle text-primary"></i>
+                                <span class="fw-bold"> Ilustrador/a: </span>
+                                {{ product.ilustracion }}
+                            </li>
+                            }
+                        </ul>
+                    </div>
 
-@if(product.complejidad){
-<div class="card">
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-12">COMPLEJIDAD:</dt>
-            <dd class="col-sm-12">{{ product.complejidad.nombre }}</dd>
-        </dl>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <h3 class="p-2-title mt-4 pt-3">Más información</h3>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td class="tdStyle">Número de participantes</td>
+                                        <td>
+                                            {{ product.participantes_min }} mín. -
+                                            {{ product.participantes_max }} máx.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tiempo aprox. de juego</td>
+                                        <td>{{ product.duracion_minutos }} minutos</td>
+                                    </tr>
+                                    <tr>
+                                        <td>A partir de</td>
+                                        <td>{{ product.edad_min }} años</td>
+                                    </tr>
+                                    @if(product.complejidad){
+                                    <tr>
+                                        <td>Complejidad</td>
+                                        <td>{{ product.complejidad.nombre }}</td>
+                                    </tr>
+                                    }@if(product.contexto){
+                                    <tr>
+                                        <td>Contexto</td>
+                                        <td>{{ product.contexto.nombre }}</td>
+                                    </tr>
+                                    }@if(product.tematizacion){
+                                    <tr>
+                                        <td>Tema</td>
+                                        <td>{{ product.tematizacion.nombre }}</td>
+                                    </tr>
+                                    }@if(product.componentes && product.componentes.length > 0){
+                                    <tr>
+                                        <td>Componentes</td>
+                                        <td>
+                                            @for(componente of product.componentes; track $index){
+                                            <dd class="col-sm-12">{{ componente.nombre }}</dd>
+                                            }
+                                        </td>
+                                    </tr>
+                                    }@if(product.parte){
+                                    <tr>
+                                        <td>Adquiridos por partes</td>
+                                        <td>{{ product.parte.nombre }}</td>
+                                    </tr>
+                                    }@if(product.dinamica){
+                                    <tr>
+                                        <td>Dinámica</td>
+                                        <td>{{ product.dinamica.nombre }}</td>
+                                    </tr>
+                                    } @if(product.premios){
+                                    <tr>
+                                        <td>Premios</td>
+                                        <td>{{ product.premios }}</td>
+                                    </tr>
+                                    } @if(product.ean){
+                                    <tr>
+                                        <td>EAN</td>
+                                        <td>{{ product.ean }}</td>
+                                    </tr>
+                                    }@if(product.url){
+                                    <tr>
+                                        <td>URL editorial</td>
+                                        <td class="text-break">
+                                            <a href="{{ product.url }}" target="_blank" class="text-success">{{
+                                                product.url }}</a>
+                                        </td>
+                                    </tr>
+                                    }@if(product.medidas_caja_cm){
+                                    <tr>
+                                        <td>Medidas caja</td>
+                                        <td>{{ product.medidas_caja_cm }}</td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-} @if(product.contexto){
-<div class="card">
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-12">CONTEXTO:</dt>
-            <dd class="col-sm-12">{{ product.contexto.nombre }}</dd>
-        </dl>
-    </div>
-</div>
-} @if(product.tematizacion){
-<div class="card">
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-12">TEMA:</dt>
-            <dd class="col-sm-12">{{ product.tematizacion.nombre }}</dd>
-        </dl>
-    </div>
-</div>
-} @if(product.componentes){
-<div class="card">
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-12">COMPONENTES :</dt>
-                @for(componente of product.componentes; track $index){
-                    <dd class="col-sm-12">- {{ componente.nombre }}</dd>
-                }
-            
-        </dl>
-    </div>
-</div>
-}
-<div class="card">
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-12">TEMA:</dt>
-            <dd class="col-sm-12">{{ product.tematizacion.nombre }}</dd>
-        </dl>
-    </div>
-</div>
-} @if(product.parte){
-<div class="card">
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-12">ADQUIRIDOS POR PARTES:</dt>
-            <dd class="col-sm-12">{{ product.parte.nombre }}</dd>
-        </dl>
-    </div>
-</div>
-} @if(product.dinamica){
-<div class="card">
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-12">DINÁMICA:</dt>
-            <dd class="col-sm-12">{{ product.dinamica.nombre }}</dd>
-        </dl>
-    </div>
-</div>
-} @if(product.premios){
-<div class="card">
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-12">PREMIOS:</dt>
-            <dd class="col-sm-12">{{ product.premios }}</dd>
-        </dl>
-    </div>
-</div>
-} @if(product.ranking_global){
-<div class="card">
-    <div class="mt-3 mx-4">
-        <dl class="row">
-            <dt class="col-sm-12">RANKING:</dt>
-            <dd class="col-sm-12">{{ product.ranking_global }}</dd>
-        </dl>
-    </div>
-</div>
-}
