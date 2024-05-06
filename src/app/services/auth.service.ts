@@ -54,11 +54,15 @@ export class AuthService {
     private handleError(error: HttpErrorResponse) {
         let errorMessage = 'Alguna cosa ha salido mal. Por favor, inténtalo de nuevo más tarde.';
         if (error.error instanceof ErrorEvent) {
+            // A client-side or network error occurred. Handle it accordingly.
             errorMessage = `Error: ${error.error.message}`;
         } else {
-           
-                errorMessage = error.error || errorMessage;
-            
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong.
+            if (error.error && typeof error.error === 'object' && error.error.message) {
+                // Extract the message from the error object
+                errorMessage = error.error.message;
+            }
         }
         return throwError(() => new Error(errorMessage));
     }
