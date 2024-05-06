@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 
 export class MapaComponent implements AfterViewInit {
     map!: mapboxgl.Map;
-    selectedCategory: string = 'SELECCIONA CATEGORÍA';
+    selectedCategory: string = '';
     categorias: any[] = [];
     lugares: any[] = [];
   
