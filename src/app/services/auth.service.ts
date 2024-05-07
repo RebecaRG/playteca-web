@@ -14,6 +14,8 @@ export class AuthService {
 
     private loggedIn = new BehaviorSubject<boolean>(false);
 
+    private userId: number | null = null;
+
     constructor(private http: HttpClient) {
         this.checkAuthStatus().subscribe({
             next: (isAuthenticated) => this.loggedIn.next(isAuthenticated),
@@ -21,12 +23,20 @@ export class AuthService {
         });
     }
 
-    login(email: string, password: string): Observable<any> {
-        return this.http.post(`${this.baseUrl}/login`, { email, password }, { withCredentials: true }).pipe(
-            catchError(this.handleError),
-            tap(() => this.loggedIn.next(true))
-        );
+    public get isLoggedIn$(): Observable<boolean> {
+        return this.loggedIn.asObservable();
     }
+
+    login(email: string, password: string): Observable<any> {
+        return this.http.post<any>(`${this.baseUrl}/login`, { email, password }, { withCredentials: true }).pipe(
+            tap((response) => {
+                this.userId = response.data.user.id_user; 
+                this.loggedIn.next(true);
+                console.log("UserId: " + this.userId);
+              }),
+          catchError(this.handleError)
+        );
+      }
 
     register(userDetails: User): Observable<any> {
         return this.http.post(`${this.baseUrl}/register`, userDetails).pipe(
@@ -36,10 +46,17 @@ export class AuthService {
 
     logout(): Observable<any> {
         return this.http.get(`${this.baseUrl}/logout`, { withCredentials: true }).pipe(
-            catchError(this.handleError),
-            tap(() => this.loggedIn.next(false))
+          tap(() => {
+            this.loggedIn.next(false);
+            this.userId = null;
+          }),
+          catchError(this.handleError)
         );
-    }
+      }
+
+      getUserId(): number | null {
+        return this.userId;
+        }
 
 
     checkAuthStatus(): Observable<boolean> {
