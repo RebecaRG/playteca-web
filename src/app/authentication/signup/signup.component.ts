@@ -5,8 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { User } from 'src/app/interfaces/user';
-
-// import { passwordMatchValidator } from '../shared/password-match.directive';
+import { passwordMatchValidator } from 'src/app/shared/password-match.directive';
 
 
 
@@ -54,6 +53,8 @@ export class SignupComponent {
     'email': new FormControl('', [Validators.required, Validators.email]),
     'password': new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]{5,}$/)]),
     'confirmPassword': new FormControl('', [Validators.required])
+  }, {
+    validators: passwordMatchValidator
   });
 
 closeAlert() {
@@ -104,7 +105,5 @@ setTokenCookie(token: string) {
   // Establece la cookie del token
   document.cookie = `token=${token}; expires=${expirationDateString}; path=/;`;
 }
-
-
 
 }
