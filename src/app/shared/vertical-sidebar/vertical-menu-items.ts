@@ -10,7 +10,17 @@ export const ROUTES: RouteInfo[] = [
   //   label: '',
   //   labelClass: '',
   //   submenu: []
-  // },
+  // }
+  {
+    path: '/auth/login',
+    title: 'Iniciar sesión',
+    icon: 'Lock',
+    class: '',
+    extralink: false,
+    label: '',
+    labelClass: '',
+    submenu: []
+  },
   {
     path: '/playteca',
     title: 'Playteca',

@@ -12,7 +12,6 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
-
 @Component({
   selector: 'app-vertical-navigation',
   standalone: true,

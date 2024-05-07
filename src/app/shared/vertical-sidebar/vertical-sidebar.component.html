@@ -1,92 +1,72 @@
 <nav class="sidebar-nav">
     <ul id="sidebarnav">
+    
         <!-- User Profile-->
+        @if(isLoggedIn){
         <li class="sidebar-item user-profile" [class.active]="showMenu === 'user'">
             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                (click)="addExpandClass('user')" aria-expanded="false"><span><img src="assets/images/users/user1.jpg"
-                        alt="user" /></span><span class="hide-menu">Steave Jobs </span></a>
+                (click)="addExpandClass('user')" aria-expanded="false"><span><img src="assets/images/users/user.jpg"
+                        alt="user" /></span><span class="hide-menu">Mi perfil </span></a>
             <ul aria-expanded="false" class="collapse" [class.in]="showMenu === 'user'">
-                <li><a href="javascript:void()" class="sidebar-link p-0">My Profile </a></li>
-                <li><a href="javascript:void()" class="sidebar-link p-0">VERTICAL-SIDEBAR!!!</a></li>
-                <li><a href="javascript:void()" class="sidebar-link p-0">Inbox</a></li>
-                <li><a href="javascript:void()" class="sidebar-link p-0">Account Setting</a></li>
-                <li><a href="javascript:void()" class="sidebar-link p-0" (click)="logoutUser()">Logout</a></li>
+                <li><a [routerLink]="'/tablonUsuario'" href="javascript:void()" class="sidebar-link p-0">Tablón de usuario </a></li>
+                <li><a href="javascript:void()" class="sidebar-link p-0" (click)="logoutUser()">Cerrar sesión</a></li>
             </ul>
         </li>
-        <!-- First level menu -->
-        @for(sidebarnavItem of sidebarnavItems; track sidebarnavItem) {
-        <li class="sidebar-item" [class.active]="showMenu === sidebarnavItem.title"
+        }
+         <!-- First level menu -->
+    @for(sidebarnavItem of sidebarnavItems; track sidebarnavItem) {
+        <!-- Mostrar si el ítem no es "Iniciar Sesión" o si el usuario está autenticado -->
+        @if(sidebarnavItem.title !== 'Iniciar sesión' && isLoggedIn){
+          <li class="sidebar-item" [class.active]="showMenu === sidebarnavItem.title"
             (click)="sidebarnavItem.submenu.length != 0 ? '' : handleNotify()"
             [routerLinkActive]="sidebarnavItem.submenu.length != 0 ? '' : 'active'">
             @if(sidebarnavItem.extralink === true) {
-            <div class="nav-small-cap"><i [ngClass]="[sidebarnavItem.icon]"></i><span
-                    class="hide-menu">{{sidebarnavItem.title | translate}}</span></div>
+              <div class="nav-small-cap"><i [ngClass]="[sidebarnavItem.icon]"></i>
+                <span class="hide-menu">{{sidebarnavItem.title | translate}}</span>
+              </div>
             }
-
             @if(!sidebarnavItem.extralink) {
-            <a class="sidebar-link waves-effect waves-dark"
+                <a class="sidebar-link waves-effect waves-dark"
+                  [routerLink]="sidebarnavItem.class === '' ? [sidebarnavItem.path] : null"
+                  [ngClass]="[sidebarnavItem.class]" (click)="addExpandClass(sidebarnavItem.title)"
+                  [routerLinkActive]="sidebarnavItem.submenu.length != 0 ? '' : 'active'">
+                  <i-feather [name]="sidebarnavItem.icon" [ngClass]="[sidebarnavItem.icon]"></i-feather>
+                  <span class="hide-menu">{{sidebarnavItem.title | translate}}
+                    @if(sidebarnavItem.label != '') {
+                      <span [ngClass]="[sidebarnavItem.labelClass]">{{sidebarnavItem.label | translate}}</span>
+                    }
+                  </span>
+                </a>
+              }
+            </li>
+          }
+            @if(!isLoggedIn){
+                <li class="sidebar-item" [class.active]="showMenu === sidebarnavItem.title"
+                  (click)="sidebarnavItem.submenu.length != 0 ? '' : handleNotify()"
+                  [routerLinkActive]="sidebarnavItem.submenu.length != 0 ? '' : 'active'">
+                  @if(sidebarnavItem.extralink === true) {
+                    <div class="nav-small-cap"><i [ngClass]="[sidebarnavItem.icon]"></i>
+                      <span class="hide-menu">{{sidebarnavItem.title | translate}}</span>
+                    </div>
+                  }
+        
+  
+            @if(!sidebarnavItem.extralink) {
+              <a class="sidebar-link waves-effect waves-dark"
                 [routerLink]="sidebarnavItem.class === '' ? [sidebarnavItem.path] : null"
                 [ngClass]="[sidebarnavItem.class]" (click)="addExpandClass(sidebarnavItem.title)"
                 [routerLinkActive]="sidebarnavItem.submenu.length != 0 ? '' : 'active'">
-                <!-- <i [ngClass]="[sidebarnavItem.icon]"></i> -->
                 <i-feather [name]="sidebarnavItem.icon" [ngClass]="[sidebarnavItem.icon]"></i-feather>
                 <span class="hide-menu">{{sidebarnavItem.title | translate}}
-                    @if(sidebarnavItem.label != '') {
+                  @if(sidebarnavItem.label != '') {
                     <span [ngClass]="[sidebarnavItem.labelClass]">{{sidebarnavItem.label | translate}}</span>
-                    }
-
+                  }
                 </span>
-            </a>
+              </a>
             }
-
-            <!-- Second level menu -->
-            @if(sidebarnavItem.submenu.length > 0) {
-            <ul aria-expanded="false" class="collapse first-level"
-                [ngClass]="{'in' : showMenu === sidebarnavItem.title }">
-                @for(sidebarnavSubItem of sidebarnavItem.submenu; track sidebarnavSubItem) {
-                <li class="sidebar-item" (click)="sidebarnavSubItem.submenu.length != 0 ? '' : handleNotify()"
-                    [class.active]="showSubMenu === sidebarnavSubItem.title"
-                    [routerLinkActive]="sidebarnavSubItem.submenu.length > 0 ? '' : 'active'">
-                    @if(!sidebarnavSubItem.extralink) {
-                    <a class="sidebar-link"
-                        [routerLink]="sidebarnavSubItem.submenu.length > 0 ? null : [sidebarnavSubItem.path]"
-                        [routerLinkActive]="sidebarnavSubItem.submenu.length > 0 ? '' : 'router-link-active'"
-                        [ngClass]="[sidebarnavSubItem.class]" (click)="addActiveClass(sidebarnavSubItem.title)">
-                        <i [ngClass]="[sidebarnavSubItem.icon]"></i>
-                        <span class="hide-menu">{{sidebarnavSubItem.title | translate}}</span>
-                    </a>
-                    }
-
-                    <!-- Third level menu -->
-                    @if(sidebarnavSubItem.submenu.length > 0) {
-                    <ul aria-expanded="false" class="collapse Second-level"
-                        [ngClass]="{'in' : showSubMenu === sidebarnavSubItem.title }">
-                        @for(sidebarnavSubsubItem of sidebarnavSubItem.submenu; track sidebarnavSubsubItem) {
-                        <li class="sidebar-item"
-                            [routerLinkActive]="sidebarnavSubsubItem.submenu.length > 0 ? '' : 'active'"
-                            [ngClass]="[sidebarnavSubsubItem.class]">
-                            @if(!sidebarnavSubsubItem.extralink) {
-                            <a class="sidebar-link" [routerLink]="[sidebarnavSubsubItem.path]"
-                                [routerLinkActive]="sidebarnavSubsubItem.submenu.length > 0 ? '' : 'router-link-active'">
-                                <i [ngClass]="[sidebarnavSubsubItem.icon]"></i>
-                                <span class="hide-menu">{{sidebarnavSubsubItem.title | translate}}</span>
-                            </a>
-                            }
-
-                        </li>
-                        }
-
-                    </ul>
-                    }
-
-                </li>
-                }
-
-            </ul>
-            }
-
-        </li>
+          </li>
         }
-
+        }
+    
     </ul>
-</nav>
+  </nav>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouteInfo } from './vertical-sidebar.metadata';
 import { VerticalSidebarService } from './vertical-sidebar.service';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
@@ -17,11 +17,12 @@ declare var $: any;
   imports:[TranslateModule, CommonModule, RouterModule, FeatherModule],
   templateUrl: './vertical-sidebar.component.html'
 })
-export class VerticalSidebarComponent {
+export class VerticalSidebarComponent implements OnInit {
   showMenu = '';
   showSubMenu = '';
   public sidebarnavItems: RouteInfo[] = [];
   path = '';
+  isLoggedIn = false;
 
 
   @Input() showClass: boolean = false;
@@ -45,6 +46,12 @@ export class VerticalSidebarComponent {
         }
       ));
       this.addExpandClass(this.path);
+    });
+  }
+
+  ngOnInit(): void {
+    this.authService.isLoggedIn$.subscribe((isAuthenticated) => {
+      this.isLoggedIn = isAuthenticated;
     });
   }
 

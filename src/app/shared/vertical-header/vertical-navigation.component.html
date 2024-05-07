@@ -37,19 +37,19 @@
   
   @if(isLoggedIn){
     <li class="nav-item" ngbDropdown placement="bottom-end">
-      <a ngbDropdownToggle class="nav-link text-muted waves-effect waves-dark pro-pic" href="javascript:void(0)"
+      <a [routerLink]="'/tablonUsuario'" ngbDropdownToggle class="nav-link text-muted waves-effect waves-dark pro-pic" href="javascript:void(0)"
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <i class="ti-user mx-1"></i>
         <span>Mi Perfil</span>
-      </a>
+    </a>
       <div class="dropdown-menu-right user-dd" ngbDropdownMenu>
         <!-- Tablón de Usuario -->
         <a class="dropdown-item" href="javascript:void(0)">
-          <i class="fa fa-heart me-1 ms-1"></i> Tablón de Usuario</a>
+          <i class="fa fa-heart me-1 ms-1"></i> Tablón de usuario</a>
         <!-- Cerrar Sesión -->
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="javascript:void(0)" (click)="logoutUser()">
-          <i class="fa fa-power-off me-1 ms-1"></i> Cerrar Sesión</a>
+          <i class="fa fa-power-off me-1 ms-1"></i> Cerrar sesión</a>
       </div>
     </li>
     }
