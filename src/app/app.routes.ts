@@ -7,7 +7,7 @@ import { ListProductComponent } from './components/list-product/list-product.com
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { MapaComponent } from './components/mapa/mapa.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
-import { TablonUsuarioComponent } from './tablon-usuario/tablon-usuario.component';
+import { TablonUsuarioComponent } from './components/tablon-usuario/tablon-usuario.component';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
