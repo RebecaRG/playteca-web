@@ -83,4 +83,8 @@ export class AuthService {
         }
         return throwError(() => new Error(errorMessage));
     }
+
+    public isAuthenticated(): boolean {
+        return this.loggedIn.value;
+      }
 }

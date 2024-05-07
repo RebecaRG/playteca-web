@@ -8,6 +8,7 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
 import { MapaComponent } from './components/mapa/mapa.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { TablonUsuarioComponent } from './tablon-usuario/tablon-usuario.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -20,7 +21,7 @@ export const routes: Routes = [
             { path: 'juegos/:id', component: ProductDetailComponent},
             { path: 'mapa', component: MapaComponent},
             { path: 'calendario', component: CalendarioComponent},
-            { path: 'tablonUsuario', component: TablonUsuarioComponent},
+            { path: 'tablonUsuario', component: TablonUsuarioComponent, canActivate:[authGuard]},
 
 
         ],
