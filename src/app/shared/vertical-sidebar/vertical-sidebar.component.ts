@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { FeatherModule } from 'angular-feather';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 declare var $: any;
@@ -23,6 +24,7 @@ export class VerticalSidebarComponent implements OnInit {
   public sidebarnavItems: RouteInfo[] = [];
   path = '';
   isLoggedIn = false;
+  username: string | null = null;
 
 
   @Input() showClass: boolean = false;
@@ -33,7 +35,7 @@ export class VerticalSidebarComponent implements OnInit {
     this.notify.emit(!this.showClass);
   }
 
-  constructor(private menuServise: VerticalSidebarService, private router: Router, private authService: AuthService) {
+  constructor(private menuServise: VerticalSidebarService, private router: Router, private authService: AuthService, private userService: UserService) {
     this.menuServise.items.subscribe(menuItems => {
       this.sidebarnavItems = menuItems;
 
@@ -53,7 +55,16 @@ export class VerticalSidebarComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe((isAuthenticated) => {
       this.isLoggedIn = isAuthenticated;
     });
+    this.authService.userId$.subscribe((userId) => {
+      if (userId !== null) {
+        this.userService.getUserProfile(userId).subscribe((profile) => {
+          this.username = profile.data.username;
+        });
+      }
+    });
   }
+
+  
 
   addExpandClass(element: any) {
     if (element === this.showMenu) {
@@ -79,11 +90,7 @@ export class VerticalSidebarComponent implements OnInit {
   logoutUser() {
     this.authService.logout().subscribe({
         next: () => {
-            console.log('Sesión cerrada correctamente');
-            this.router.navigate(['/auth/login']); 
-        },
-        error: (error) => {
-            console.error('Error al cerrar la sesión:', error.message);
+            this.router.navigate(['/playteca']); 
         }
     });
 }

@@ -5,8 +5,7 @@
         @if(isLoggedIn){
         <li class="sidebar-item user-profile" [class.active]="showMenu === 'user'">
             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                (click)="addExpandClass('user')" aria-expanded="false"><span><img src="assets/images/users/user.jpg"
-                        alt="user" /></span><span class="hide-menu">Mi perfil </span></a>
+                (click)="addExpandClass('user')" aria-expanded="false"><span class="hide-menu"> ¡HOLA {{username.toUpperCase()}}! </span></a>
             <ul aria-expanded="false" class="collapse" [class.in]="showMenu === 'user'">
                 <li><a [routerLink]="'/tablonUsuario'" href="javascript:void()" class="sidebar-link p-0">Tablón de usuario </a></li>
                 <li><a href="javascript:void()" class="sidebar-link p-0" (click)="logoutUser()">Cerrar sesión</a></li>
