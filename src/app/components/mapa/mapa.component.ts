@@ -33,18 +33,12 @@ private fetchCategoriasYLugares(): void {
     next: (categorias) => {
       this.categorias = categorias;
     },
-    error: (error) => {
-      console.error('Error al cargar las categorías:', error);
-    }
   });
 
   this._lugarService.getLugaresConTipo().subscribe({
     next: (lugares) => {
       this.lugares = lugares;
       this.loadAllCategories();
-    },
-    error: (error) => {
-      console.error('Error al cargar los lugares:', error);
     }
   });
 }

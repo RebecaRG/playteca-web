@@ -41,12 +41,8 @@ export class VerticalNavigationComponent implements AfterViewInit, OnInit {
   logoutUser() {
     this.authService.logout().subscribe({
         next: () => {
-            console.log('Sesión cerrada correctamente');
-            this.router.navigate(['/auth/login']);
+            this.router.navigate(['/playteca']);
         },
-        error: (error) => {
-            console.error('Error al cerrar la sesión:', error.message);
-        }
     });
 }
 

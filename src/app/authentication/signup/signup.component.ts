@@ -69,40 +69,33 @@ submitDetails() {
 
   this.authService.register(postData as User).subscribe({
     next: (response) => {
-      // Establece la cookie del token
+  
       this.setTokenCookie(response.accessToken);
 
-      // Intenta iniciar sesión automáticamente después del registro
       this.authService.login(postData.email!, postData.password!).subscribe({
         next: (loginResponse) => {
-          // Redirige al usuario a la página de inicio o a la URL anterior si existe
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
           this.router.navigateByUrl(returnUrl);
         },
-        error: (loginError) => {
-          console.error('Error logging in after registration:', loginError);
-        }
       });
     },
     error: (error) => {
-      console.dir(error); 
-      console.log(JSON.stringify(error));
       this.showError = true;
       this.errorMessage = error.message || 'Error desconocido durante el registro.';
   }
   });
 }
 
-// Función para establecer la cookie del token
+
 setTokenCookie(token: string) {
-  // Define la fecha de expiración de la cookie
+
   const expirationDate = new Date();
   expirationDate.setDate(expirationDate.getDate() + 7); // Por ejemplo, expira en 7 días
 
-  // Formatea la fecha de expiración
+
   const expirationDateString = expirationDate.toUTCString();
 
-  // Establece la cookie del token
+
   document.cookie = `token=${token}; expires=${expirationDateString}; path=/;`;
 }
 

@@ -51,7 +51,6 @@ export class LoginComponent {
           this.loading = false;
         },
         error: (error) => {
-          console.error('Error durante el inicio de sesión:', error.message);
           this.showAlert = true;
           this.alertMessage = `Error durante el inicio de sesión: ${error.message}`;
           this.loading = false;

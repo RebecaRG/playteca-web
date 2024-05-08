@@ -31,7 +31,7 @@ export class ListProductComponent implements OnInit {
 
   };
   page = 1;
-  pageSize = 15;
+  pageSize = 10;
   key: string = '';
   reverse: boolean = false;
   sortState = { column: null, direction: 'asc' };

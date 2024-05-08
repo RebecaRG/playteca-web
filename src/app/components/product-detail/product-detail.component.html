@@ -113,11 +113,6 @@
                                         <td>Dinámica</td>
                                         <td>{{ product.dinamica.nombre }}</td>
                                     </tr>
-                                    } @if(product.premios){
-                                    <tr>
-                                        <td>Premios</td>
-                                        <td>{{ product.premios }}</td>
-                                    </tr>
                                     } @if(product.ean){
                                     <tr>
                                         <td>EAN</td>
@@ -134,9 +129,14 @@
                                     }@if(product.medidas_caja_cm){
                                     <tr>
                                         <td>Medidas caja</td>
-                                        <td>{{ product.medidas_caja_cm }}</td>
+                                        <td>{{ product.medidas_caja_cm }} cm</td>
                                     </tr>
-                                    }
+                                    }@if(product.premios){
+                                        <tr>
+                                            <td>Premios</td>
+                                            <td>{{ product.premios }}</td>
+                                        </tr>
+                                        }
                                 </tbody>
                             </table>
                         </div>
