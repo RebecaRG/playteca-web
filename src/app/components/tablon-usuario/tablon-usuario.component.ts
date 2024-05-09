@@ -9,6 +9,7 @@ import { UserGame } from '../../interfaces/userGame';
 import { ProductService } from 'src/app/services/product.service';
 import { CommonModule } from '@angular/common';
 import { EditUserGameModalComponent } from '../edit-user-game-modal/edit-user-game-modal.component';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-tablon-usuario',
@@ -64,21 +65,35 @@ export class TablonUsuarioComponent implements OnInit {
   
     modalRef.result.then(() => {
       this.loadUserGames();
-    }, (reason) => {
-      console.log('El modal fue cerrado:', reason);
-    });
+    }, (reason) => {});
   }
 
   openEditGameModal(userGame: UserGame) {
     const modalRef = this.modalService.open(EditUserGameModalComponent);
     modalRef.componentInstance.userGame = userGame;
   
-    // Actualiza la tabla cuando el modal se cierra
     modalRef.result.then(() => {
       this.loadUserGames();
-    }, (reason) => {
-      console.log('El modal fue cerrado:', reason);
-    });
+    }, (reason) => {});
   }
   
+
+  deleteUserGame(juegoId: number): void {
+    const modalRef = this.modalService.open(ConfirmModalComponent);
+    modalRef.componentInstance.title = 'Eliminar Juego';
+    modalRef.componentInstance.message = '¿Quieres eliminar este juego de la lista?';
+  
+
+    modalRef.result.then((result) => {
+      if (result) {
+        this.userBoardService.deleteUserJuego(juegoId).subscribe({
+          next: () => {
+
+            this.loadUserGames(); 
+          },
+          error: (error) => console.error('Error al eliminar el juego:', error)
+        });
+      }
+    }, () => {});
+  }
 }

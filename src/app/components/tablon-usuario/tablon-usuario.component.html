@@ -8,7 +8,7 @@
     <div class="table-responsive">
     <table class="table table-striped">
       <thead>
-        <tr class="table-primary text-start">
+        <tr class="table-info text-start">
           <th class="col-3">Título</th>
           <th class="col-2">Autor/a</th>
           <th class="col-2">Editorial</th>
@@ -33,10 +33,11 @@
                 <img src="assets/images/icon/info.svg" alt="Más información" >
             </button>
             <button type="button" class="btn-i"  (click)="openEditGameModal(juego)">
-
               <img src="assets/images/icon/update.svg" alt="Modificar" >
           </button>
-          
+          <button type="button" class="btn-i"  (click)="deleteUserGame(juego.id_user_juegos)">
+            <img src="assets/images/icon/delete.svg" alt="Eliminar" >
+        </button>
 
         </div></td>
         </tr>
