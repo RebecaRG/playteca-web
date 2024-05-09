@@ -1,14 +1,13 @@
-<div class="modal-header">
-    <h4 class="modal-title">Añadir Juego</h4>
+<div class="modal-header bg-light-primary">
+    <h4 class="modal-title ">Añadir juego a la lista</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
   </div>
   <div class="modal-body">
     <div class="row mb-3">
         <form [formGroup]="userGameForm" (ngSubmit)="addGame()" class="col-12">
           <div class="mb-3">
-            <label for="titulo" class="form-label">Juego</label>
             <select formControlName="juego" id="titulo" class="form-control" required>
-              <option value="">Selecciona un juego</option>
+              <option value="">Juego</option>
            @for(juego of allGames; track $index){
               <option [value]="juego.id_juego">
                 {{ juego.titulo }}
@@ -23,9 +22,8 @@
           </div>
     
           <div class="mb-3">
-            <label for="estado" class="form-label">Estado</label>
             <select formControlName="estado" id="estado" class="form-control" required>
-              <option value="">Selecciona un estado</option>
+              <option value="">Estado</option>
               <option value="poseido">Lo tengo</option>
               <option value="deseado">Lo quiero</option>
             </select>
@@ -37,8 +35,7 @@
           </div>
     
           <div class="mb-3">
-            <label for="puntuacion" class="form-label">Puntuación (entre 0 y 5)</label>
-            <input type="number" formControlName="puntuacion" id="puntuacion" class="form-control" min="0" max="10" placeholder="Opcional">
+            <input type="number" formControlName="puntuacion" id="puntuacion" class="form-control" min="0" max="10" placeholder="Puntuación (entre 0 y 5)">
             <div>
                 @if(userGameForm.get('puntuacion').invalid && userGameForm.get('puntuacion').touched){
                     <div class="text-danger">La puntuación debe estar entre 0 y 5</div>
@@ -47,8 +44,7 @@
         </div>
     
           <div class="mb-3">
-            <label for="comentario" class="form-label">Comentario (máx. 200 carácteres)</label>
-            <textarea formControlName="comentario" id="comentario" class="form-control" placeholder="Opcional"></textarea>
+            <textarea formControlName="comentario" id="comentario" class="form-control" placeholder="Comentario (200 carácteres máx.)"></textarea>
             <div>
                 @if(userGameForm.get('comentario').invalid && userGameForm.get('comentario').touched){
                     <div class="text-danger"> El comentario es demasiado largo</div>
@@ -56,7 +52,7 @@
             </div>
         </div>
     
-    <button type="submit" class="btn btn-primary">Agregar Juego</button> 
+    <button type="submit" class="btn btn-primary">Añadir</button> 
         </form>
       </div>
       </div>
