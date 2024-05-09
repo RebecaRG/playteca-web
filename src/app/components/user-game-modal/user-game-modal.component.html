@@ -1,0 +1,44 @@
+<div class="modal-header">
+    <h4 class="modal-title">Añadir Juego</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="row mb-3">
+        <form [formGroup]="userGameForm" (ngSubmit)="addGame()" class="col-12">
+          <div class="mb-3">
+            <label for="titulo" class="form-label">Juego</label>
+            <select formControlName="juego" id="titulo" class="form-control" required>
+              <option value="">Selecciona un juego</option>
+           @for(juego of allGames; track $index){
+              <option [value]="juego.id_juego">
+                {{ juego.titulo }}
+              </option>
+          }
+        </select>
+          </div>
+    
+          <div class="mb-3">
+            <label for="estado" class="form-label">Estado</label>
+            <select formControlName="estado" id="estado" class="form-control" required>
+              <option value="">Selecciona un estado</option>
+              <option value="poseido">Poseído</option>
+              <option value="deseado">Deseado</option>
+            </select>
+          </div>
+    
+          <div class="mb-3">
+            <label for="puntuacion" class="form-label">Puntuación</label>
+            <input type="number" formControlName="puntuacion" id="puntuacion" class="form-control" min="0" max="10" placeholder="Opcional">
+          </div>
+    
+          <div class="mb-3">
+            <label for="comentario" class="form-label">Comentario</label>
+            <textarea formControlName="comentario" id="comentario" class="form-control" placeholder="Comentario (Opcional)"></textarea>
+          </div>
+    
+    <button type="submit" class="btn btn-primary">Agregar Juego</button> 
+        </form>
+      </div>
+      </div>
+
+     

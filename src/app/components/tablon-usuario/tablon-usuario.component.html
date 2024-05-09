@@ -2,43 +2,7 @@
  <div class="card p-3">
   <div class="card-body">
 
-   <div class="row mb-3">
-      <form [formGroup]="userGameForm" (ngSubmit)="addGame()" class="col-12">
-        <div class="mb-3">
-          <label for="titulo" class="form-label">Juego</label>
-          <select formControlName="juego" id="titulo" class="form-control" required>
-            <option value="">Selecciona un juego</option>
-         @for(juego of allGames; track $index){
-            <option [value]="juego.id_juego">
-              {{ juego.titulo }}
-            </option>
-        }
-      </select>
-        </div>
-  
-        <div class="mb-3">
-          <label for="estado" class="form-label">Estado</label>
-          <select formControlName="estado" id="estado" class="form-control" required>
-            <option value="">Selecciona un estado</option>
-            <option value="poseido">Poseído</option>
-            <option value="deseado">Deseado</option>
-          </select>
-        </div>
-  
-        <div class="mb-3">
-          <label for="puntuacion" class="form-label">Puntuación</label>
-          <input type="number" formControlName="puntuacion" id="puntuacion" class="form-control" min="0" max="10" placeholder="Opcional">
-        </div>
-  
-        <div class="mb-3">
-          <label for="comentario" class="form-label">Comentario</label>
-          <textarea formControlName="comentario" id="comentario" class="form-control" placeholder="Comentario (Opcional)"></textarea>
-        </div>
-  
-  <button type="submit" class="btn btn-primary">Agregar Juego</button> 
-      </form>
-    </div>
-
+    <button class="btn btn-primary" (click)="openAddGameModal()">Añadir Juego</button>
 
     <h4>Mis juegos</h4>
     <div class="table-responsive">
