@@ -18,8 +18,8 @@ export class UserGameModalComponent {
   userGameForm = new FormGroup({
     'juego': new FormControl('', [Validators.required]),
     'estado': new FormControl('', [Validators.required]),
-    'puntuacion': new FormControl('', [Validators.min(0), Validators.max(10)]),
-    'comentario': new FormControl('')
+    'puntuacion': new FormControl('', [Validators.min(0), Validators.max(5)]),
+    'comentario': new FormControl('', [Validators.maxLength(200)])
   });
 
   constructor(
