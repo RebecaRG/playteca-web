@@ -29,9 +29,13 @@
           </td>
           <td>{{ juego.comentario }}</td>
           <td><div class="d-flex justify-content-end">
-            <button type="button" class="btn-i" [routerLink]="['/juegos', juego.juego.id_juego]">
+            <button type="button" class="btn-i" [routerLink]="['/juegos', juego.id_user_juegos]">
                 <img src="assets/images/icon/info.svg" alt="Más información" >
             </button>
+            <button type="button" class="btn-i"  (click)="openEditGameModal(juego)">
+
+              <img src="assets/images/icon/update.svg" alt="Modificar" >
+          </button>
           
 
         </div></td>

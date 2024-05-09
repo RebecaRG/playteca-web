@@ -8,6 +8,7 @@ import { UserGameModalComponent } from '../user-game-modal/user-game-modal.compo
 import { UserGame } from '../../interfaces/userGame';
 import { ProductService } from 'src/app/services/product.service';
 import { CommonModule } from '@angular/common';
+import { EditUserGameModalComponent } from '../edit-user-game-modal/edit-user-game-modal.component';
 
 @Component({
   selector: 'app-tablon-usuario',
@@ -67,4 +68,17 @@ export class TablonUsuarioComponent implements OnInit {
       console.log('El modal fue cerrado:', reason);
     });
   }
+
+  openEditGameModal(userGame: UserGame) {
+    const modalRef = this.modalService.open(EditUserGameModalComponent);
+    modalRef.componentInstance.userGame = userGame;
+  
+    // Actualiza la tabla cuando el modal se cierra
+    modalRef.result.then(() => {
+      this.loadUserGames();
+    }, (reason) => {
+      console.log('El modal fue cerrado:', reason);
+    });
+  }
+  
 }

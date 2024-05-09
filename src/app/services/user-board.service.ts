@@ -26,10 +26,10 @@ export class UserBoardService {
     }
   
     updateUserJuego(juegoId: number, juegoData: any): Observable<any> {
-      return this.http.put<any>(`${this.myAppUrl}/${this.myApiUrl}/juegos/${juegoId}`, juegoData);
+      return this.http.put<any>(`${this.myAppUrl}${this.myApiUrl}juegos/${juegoId}`, juegoData);
     }
   
     deleteUserJuego(juegoId: number): Observable<any> {
-      return this.http.delete<any>(`${this.myAppUrl}/${this.myApiUrl}/juegos/${juegoId}`);
+      return this.http.delete<any>(`${this.myAppUrl}${this.myApiUrl}juegos/${juegoId}`);
     }
 }

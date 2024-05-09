@@ -14,7 +14,7 @@ export class UserGameModalComponent {
   @Input() allGames: any[] = [];
   @Input() userId: number | null = null;
 
-  // Estructura del formulario en el modal
+  
   userGameForm = new FormGroup({
     'juego': new FormControl('', [Validators.required]),
     'estado': new FormControl('', [Validators.required]),
