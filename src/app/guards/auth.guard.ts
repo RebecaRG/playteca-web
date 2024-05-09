@@ -11,7 +11,7 @@ export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: R
   if (authService.isAuthenticated()) {
     return true; 
   } else {
-    router.navigate(['auth/login']); 
+    router.navigate(['playteca']); 
     return false;
   }
 };
