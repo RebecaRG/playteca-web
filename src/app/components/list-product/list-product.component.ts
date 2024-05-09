@@ -22,7 +22,7 @@ import { CommonModule } from '@angular/common';
 
 export class ListProductComponent implements OnInit {
   listProducts: Product[] = [];
-  filteredProducts: Product[] = []; // Esta será la lista que mostraremos en el HTML
+  filteredProducts: Product[] = []; 
   loading: boolean = false;
   response: ResponseProducts = {
     mensaje: '',
@@ -42,7 +42,7 @@ export class ListProductComponent implements OnInit {
   }
   set searchTerm(val: string) {
     this._searchTerm = val;
-    this.filterProducts(); // Llamar a filtrar productos cada vez que se cambie el término
+    this.filterProducts(); 
   }
 
   constructor(private _productService: ProductService) {}
@@ -57,7 +57,7 @@ export class ListProductComponent implements OnInit {
       next: (data) => {
         this.response = data;  
         this.listProducts = data.productos;  
-        this.filteredProducts = data.productos; // Inicializa los productos filtrados
+        this.filteredProducts = data.productos; 
         this.loading = false;
       }
     });
@@ -65,7 +65,7 @@ export class ListProductComponent implements OnInit {
 
   filterProducts() {
     if (!this.searchTerm) {
-      this.filteredProducts = this.listProducts; // Si no hay término de búsqueda, muestra todos los productos
+      this.filteredProducts = this.listProducts; 
     } else {
       this.filteredProducts = this.listProducts.filter(product => 
         product.titulo.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
@@ -78,7 +78,6 @@ export class ListProductComponent implements OnInit {
     }
   }
 
-// ... tus otras funciones y métodos ...
 
 compare(v1: string | number, v2: string | number) {
   if (typeof v1 === 'string' && typeof v2 === 'string') {

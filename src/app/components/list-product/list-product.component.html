@@ -15,7 +15,7 @@
     @if(filteredProducts.length > 0 ){
     <table class="table table-striped">
         <thead>
-            <tr class="table-dark">
+            <tr class="table-dark text-start">
             <th scope="col" (click)="sort('titulo')"
                 [class.asc]="sortState.column === 'titulo' && sortState.direction === 'asc'"
                 [class.desc]="sortState.column === 'titulo' && sortState.direction === 'desc'">Título</th>              
