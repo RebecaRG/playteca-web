@@ -22,7 +22,7 @@ export class UserBoardService {
   
     
     addJuegoToUser(juegoData: any): Observable<any> {
-      return this.http.post<any>(`${this.myAppUrl}/${this.myApiUrl}`, juegoData);
+      return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}juegos`, juegoData);
     }
   
     updateUserJuego(juegoId: number, juegoData: any): Observable<any> {

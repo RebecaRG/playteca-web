@@ -1,55 +1,118 @@
-<!-- src/app/components/tablon-usuario/tablon-usuario.component.html -->
-<div class="col-lg-12 col-md-12 col-sm-12">
-    <h3 class="p-2-title mt-4 pt-3">Listado de Juegos</h3>
- <!-- juegos.component.html -->
-<div>
-    <h2>Juegos Poseídos</h2>
-    <table>
+ <h2 class="my-3">Tablón de usuario</h2> 
+ <div class="card p-3">
+  <div class="card-body">
+
+   <div class="row mb-3">
+      <form [formGroup]="userGameForm" (ngSubmit)="addGame()" class="col-12">
+        <div class="mb-3">
+          <label for="titulo" class="form-label">Juego</label>
+          <select formControlName="juego" id="titulo" class="form-control" required>
+            <option value="">Selecciona un juego</option>
+         @for(juego of allGames; track $index){
+            <option [value]="juego.id_juego">
+              {{ juego.titulo }}
+            </option>
+        }
+      </select>
+        </div>
+  
+        <div class="mb-3">
+          <label for="estado" class="form-label">Estado</label>
+          <select formControlName="estado" id="estado" class="form-control" required>
+            <option value="">Selecciona un estado</option>
+            <option value="poseido">Poseído</option>
+            <option value="deseado">Deseado</option>
+          </select>
+        </div>
+  
+        <div class="mb-3">
+          <label for="puntuacion" class="form-label">Puntuación</label>
+          <input type="number" formControlName="puntuacion" id="puntuacion" class="form-control" min="0" max="10" placeholder="Opcional">
+        </div>
+  
+        <div class="mb-3">
+          <label for="comentario" class="form-label">Comentario</label>
+          <textarea formControlName="comentario" id="comentario" class="form-control" placeholder="Comentario (Opcional)"></textarea>
+        </div>
+  
+  <button type="submit" class="btn btn-primary">Agregar Juego</button> 
+      </form>
+    </div>
+
+
+    <h4>Mis juegos</h4>
+    <div class="table-responsive">
+    <table class="table table-striped">
       <thead>
-        <tr>
-          <th>Título</th>
-          <th>Editorial</th>
-          <th>Fecha</th>
-          <th>Valoración</th>
-          <th>Comentario</th>
+        <tr class="table-primary text-start">
+          <th class="col-3">Título</th>
+          <th class="col-2">Autor/a</th>
+          <th class="col-2">Editorial</th>
+          <th class="col-1">Puntuación</th>
+          <th class="col-3">Comentario</th>
+          <th class="col-1"></th>
+          
         </tr>
       </thead>
       <tbody>
         @for(juego of poseidos; track $index){
         <tr>
-          <td>{{ juego.juego.titulo }}</td>
+          <td><strong>{{ juego.juego.titulo}}</strong>({{ juego.juego.fecha_publicacion }})</td>
+          <td>{{ juego.juego.autoria }}</td>
           <td>{{ juego.juego.editorial }}</td>
-          <td>{{ juego.juego.fecha_publicacion }}</td>
-          <td>{{ juego.valoracion_juego }}</td>
+          <td class="text-center">
+            <ngb-rating [rate]="juego.valoracion_juego" [max]="5"></ngb-rating>
+          </td>
           <td>{{ juego.comentario }}</td>
+          <td><div class="d-flex justify-content-end">
+            <button type="button" class="btn-i" [routerLink]="['/juegos', juego.juego.id_juego]">
+                <img src="assets/images/icon/info.svg" alt="Más información" >
+            </button>
+          
+
+        </div></td>
         </tr>
     }
       </tbody>
     </table>
+    </div>
   
-    <h2>Juegos Deseados</h2>
-    <table>
+    <h4 class="mt-3">Juegos que quiero</h4>
+    <div class="table-responsive">
+    <table class="table table-striped">
       <thead>
-        <tr>
-          <th>Título</th>
-          <th>Editorial</th>
-          <th>Fecha</th>
-          <th>Comentario</th>
+        <tr class="table-success text-start">
+          <th class="col-3">Título</th>
+          <th class="col-2">Autor/a</th>
+          <th class="col-2">Editorial</th>
+          <th class="col-1">Puntuación</th>
+          <th class="col-3">Comentario</th>
+          <th class="col-1"></th>                  
         </tr>
       </thead>
       <tbody>
         @for(juego of deseados; track $index){
         <tr>
-          <td>{{ juego.juego.titulo }}</td>
+          <td><strong>{{ juego.juego.titulo}}</strong>({{ juego.juego.fecha_publicacion }})</td>
+          <td>{{ juego.juego.autoria }}</td>
           <td>{{ juego.juego.editorial }}</td>
-          <td>{{ juego.juego.fecha_publicacion }}</td>
+          <td class="text-center">
+            <ngb-rating [rate]="juego.valoracion_juego" [max]="5"></ngb-rating>
+          </td>
           <td>{{ juego.comentario }}</td>
+          <td><div class="d-flex justify-content-end">
+            <button type="button" class="btn-i" [routerLink]="['/juegos', juego.juego.id_juego]">
+                <img src="assets/images/icon/info.svg" alt="Más información" >
+            </button>
+
+        </div></td>
         </tr>
     }
       </tbody>
     </table>
   </div>
+  </div>
   
     </div>
   
-  
+
