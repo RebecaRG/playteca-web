@@ -4,8 +4,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-success btn-rounded" [routerLink]="['/juegos']">
-                        Listado juegos
+                    <button class="btn btn-success btn-rounded" (click)="goBack()">
+                        Volver
                     </button>
                 </div>
                 <h2 class="card-title titleStyle">{{ product.titulo }}</h2>
