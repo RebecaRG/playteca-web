@@ -8,9 +8,8 @@ import { CommonModule } from '@angular/common';
 import { FeatherModule } from 'angular-feather';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
-
-
-declare var $: any;
+import { Observable,of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-vertical-sidebar',
@@ -25,6 +24,7 @@ export class VerticalSidebarComponent implements OnInit {
   path = '';
   isLoggedIn = false;
   username: string | null = null;
+  public username$: Observable<string | null>;
 
 
   @Input() showClass: boolean = false;
@@ -54,14 +54,25 @@ export class VerticalSidebarComponent implements OnInit {
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe((isAuthenticated) => {
       this.isLoggedIn = isAuthenticated;
-    });
-    this.authService.userId$.subscribe((userId) => {
-      if (userId !== null) {
-        this.userService.getUserProfile(userId).subscribe((profile) => {
-          this.username = profile.data.username;
-        });
+      if (isAuthenticated) {
+        this.loadMenuItems();
       }
     });
+    
+    this.authService.userId$.subscribe((userId) => {
+       if (userId !== null) {
+         this.userService.getUserProfile(userId).subscribe((profile) => {
+           this.username = profile.data.username;
+         });
+      }
+   });
+
+    this.username$ = this.authService.userId$.pipe(
+      switchMap((userId) => userId ? this.userService.getUserProfile(userId) : of(null)),
+      map((profile) => profile ? profile.data.username : null)
+    );
+
+    
   }
 
   
@@ -91,8 +102,23 @@ export class VerticalSidebarComponent implements OnInit {
     this.authService.logout().subscribe({
         next: () => {
             this.router.navigate(['/playteca']); 
+            this.authService.clearUserData();
         }
     });
+}
+
+loadMenuItems() {
+  this.menuServise.items.subscribe(menuItems => {
+    this.sidebarnavItems = menuItems;
+    this.sidebarnavItems.filter(m => m.submenu.filter(
+      (s) => {
+        if (s.path === this.router.url) {
+          this.path = m.title;
+        }
+      }
+    ));
+    this.addExpandClass(this.path);
+  });
 }
 
 }

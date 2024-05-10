@@ -6,6 +6,7 @@ import { User } from '../interfaces/user';
 import { environment } from 'src/environments/environment';
 
 
+
 @Injectable({
     providedIn: 'root'
 })
@@ -15,8 +16,8 @@ export class AuthService {
   private myApiUrl: string;
 
 
-    private userIdSubject = new BehaviorSubject<number | null>(null);
-    public userId$ = this.userIdSubject.asObservable();
+    private _userIdSubject = new BehaviorSubject<number | null>(null);
+    public userId$ = this._userIdSubject.asObservable();
 
     private loggedIn = new BehaviorSubject<boolean>(false);
 
@@ -47,6 +48,7 @@ export class AuthService {
         return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}/login`, { email, password }, { withCredentials: true }).pipe(
             tap((response) => {
                 this.userId = response.data.user.id_user; 
+                this.setUserId(this.userId);
                 this.loggedIn.next(true);
               }),
           catchError(this.handleError)
@@ -82,7 +84,7 @@ checkAuthStatus(): Observable<boolean> {
         localStorage.setItem('userId', this.userId.toString());
 
        
-        this.userIdSubject.next(this.userId);
+        this._userIdSubject.next(this.userId);
         this.loggedIn.next(true);
       } else {
         this.loggedIn.next(false);
@@ -111,5 +113,13 @@ checkAuthStatus(): Observable<boolean> {
 
     public isAuthenticated(): boolean {
         return this.loggedIn.value;
+      }
+
+      clearUserData() {
+        this._userIdSubject.next(null);
+      }
+      
+      setUserId(userId: number) {
+        this._userIdSubject.next(userId);
       }
 }
