@@ -61,6 +61,15 @@ a.fc-list-day-side-text {
     color: gray !important;
 }
 
+.no-scrollbar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; 
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none; 
+}
+
 @media (max-width: 768px) {
     .fc-header-toolbar {
         flex-wrap: wrap !important;
@@ -71,3 +80,4 @@ a.fc-list-day-side-text {
         margin-bottom: 10px !important;
     }
 }
+

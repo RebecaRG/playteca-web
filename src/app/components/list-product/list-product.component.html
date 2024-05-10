@@ -13,6 +13,7 @@
 
     <div class="card my-2">
     @if(filteredProducts.length > 0 ){
+    <div class="table-responsive no-scrollbar">
     <table class="table table-striped">
         <thead>
             <tr class="table-dark text-start">
@@ -67,6 +68,7 @@
         <ngb-pagination [collectionSize]="filteredProducts.length" [(page)]="page" [pageSize]="pageSize">
         </ngb-pagination>
       </div>
+    </div>
     }
     @else{
     <div class="alert alert-warning" role="alert">
