@@ -4,9 +4,11 @@
 
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-primary" (click)="openAddGameModal()">Añadir juego</button>
+      <button class="btn btn-primary" (click)="openAddGameModal()">Añadir a la lista</button>
     </div>
+
     <h4 class="fw-bold">¡Los tengo!</h4>
+    @if(poseidos.length > 0){
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -23,7 +25,7 @@
         </thead>
         <tbody>
 
-          @for(juego of poseidos; track $index){
+          @for(juego of poseidos | slice: (pageJuegosPoseidos - 1) * pageSize : (pageJuegosPoseidos - 1) * pageSize + pageSize; track $index){
           <tr>
             <td>
               <div class="d-flex justify-content-end">
@@ -55,12 +57,19 @@
           }
         </tbody>
       </table>
+      <div class="d-flex justify-content-center p-2">
+        <ngb-pagination [collectionSize]="poseidos.length" [(page)]="pageJuegosPoseidos" [pageSize]="pageSize">
+        </ngb-pagination>
+      </div>
     </div>
+  }
 
-    <hr class="lineStyle">
+   
 
+    @if(deseados.length > 0){
+    <hr class="lineStyle mb-5">
     <h4 class="mt-3 fw-bold">¡Los quiero!</h4>
-    <div class="table-responsive">
+    <div class="table-responsive no-scrollbar">
       <table class="table table-striped">
         <thead>
           <tr class="table-success text-start">
@@ -74,11 +83,11 @@
           </tr>
         </thead>
         <tbody>
-          @for(juego of deseados; track $index){
+          @for(juego of deseados| slice: (pageJuegosDeseados - 1) * pageSize : (pageJuegosDeseados - 1) * pageSize + pageSize; track $index){
           <tr>
             <td>
               <div class="d-flex justify-content-end">
-                <button type="button" class="btn-i" [routerLink]="['/juegos', juego.id_user_juegos]">
+                <button type="button" class="btn-i" [routerLink]="['/juegos', juego.juego.id_juego]">
                   <img src="assets/images/icon/info.svg" alt="Más información">
                 </button>
               </div>
@@ -106,7 +115,9 @@
           }
         </tbody>
       </table>
+      <div class="d-flex justify-content-center p-2">
+        <ngb-pagination [collectionSize]="deseados.length" [(page)]="pageJuegosDeseados" [pageSize]="pageSize">
+        </ngb-pagination>
+      </div>
     </div>
-  </div>
-
-</div>
+  }

@@ -10,11 +10,12 @@ import { ProductService } from 'src/app/services/product.service';
 import { CommonModule } from '@angular/common';
 import { EditUserGameModalComponent } from '../edit-user-game-modal/edit-user-game-modal.component';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'; 
 
 @Component({
   selector: 'app-tablon-usuario',
   standalone: true,
-  imports: [CommonModule, RouterLink, NgbRatingModule],
+  imports: [CommonModule, RouterLink, NgbRatingModule, NgbPaginationModule],
   templateUrl: './tablon-usuario.component.html',
   styleUrl: './tablon-usuario.component.scss'
 })
@@ -23,6 +24,10 @@ export class TablonUsuarioComponent implements OnInit {
   poseidos: any[] = [];
   deseados: any[] = [];
   allGames: any[] = [];
+  pageJuegosPoseidos = 1;
+  pageJuegosDeseados = 1;
+  pageSize = 5;
+
 
   constructor(
     private userBoardService: UserBoardService,
