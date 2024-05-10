@@ -1,12 +1,6 @@
-<h2 class="my-3">Mapa</h2>
-<div class="card p-3">
+<h2 class="mb-3 pt-5 mx-4">Mapa</h2>
+<div class="card p-3 mx-4">
     <div class="card-body">
-    <p>
-        Desde Barcelona, te presentamos un mundo de entretenimiento: tiendas de
-        juegos, bibliotecas, bares estratégicos y redes comunitarias. Nuestro
-        objetivo es globalizar esta experiencia, invitándote a explorar la magia de
-        los juegos de mesa en todas partes.
-    </p>
     <div class="map-container my-4">
         <div id="map" class="map-container"></div>
         <select class="form-select map-select shadow" [(ngModel)]="selectedCategory" (change)="filterMarkers()">

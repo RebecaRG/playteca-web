@@ -1,0 +1,35 @@
+@if (images) {
+<ngb-carousel [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
+	<ng-template ngbSlide>
+		<div class="carrouselStyle">
+			<img [src]="images[0]" alt="First slide" />
+		</div>
+	</ng-template>
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<img [src]="images[1]" alt="Second slide" />
+		</div>
+	</ng-template>
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<img [src]="images[2]" alt="Third slide" />
+		</div>
+	</ng-template>
+</ngb-carousel>
+}
+
+<div class="row row-cols-1 row-cols-md-2 g-3 m-4">
+	@for(info of infoCard; track $index){
+	<div class="col ">
+		<div class="card h-100 shadow-sm border border-{{info.color}} border-2 rounded-3">
+			<div class="d-flex bg-{{info.color}} w-100 borderTop">
+				<i class="{{info.icono}} text-white ms-3 my-auto iconSize"></i>
+			</div>
+			<div class="card-body mt-3">
+				<h5 class="card-title fw-bold text-{{info.color}}">{{info.titulo}}</h5>
+				<span class="card-text" [innerHTML]="info.descripcion"></span>
+			</div>
+		</div>
+	</div>
+	}
+</div>

@@ -70,6 +70,16 @@ a.fc-list-day-side-text {
     display: none; 
 }
 
+
+    app-full-layout div#main-wrapper div.page-wrapper div.container-fluid {
+        padding: 0 !important;
+    } 
+
+    app-full-layout div#main-wrapper div.page-wrapper app-breadcrumb div.page-breadcrumb {
+ 
+    padding: 0 !important;
+    }
+
 @media (max-width: 768px) {
     .fc-header-toolbar {
         flex-wrap: wrap !important;
@@ -80,4 +90,6 @@ a.fc-list-day-side-text {
         margin-bottom: 10px !important;
     }
 }
+
+
 

@@ -1,81 +1,74 @@
-
-@if(loading){<p>LOADING...</p>}
-@else{
-<h2 class="my-3">Listado de juegos de mesa</h2>
-<div class="card p-3">
+<h2 class="mb-3 pt-5 mx-4">Listado de juegos de mesa</h2>
+<div class="card p-3 mx-4">
     <div class="card-body">
-   
+        <div class="form-group form-inline mb-4">
+            <input class="form-control" placeholder="Buscar o filtar..." type="text" [(ngModel)]="searchTerm" />
+        </div>
 
-    <div class="form-group form-inline mb-4">
+        <div class="card my-2">
+            @if(filteredProducts.length > 0 ){
+            <div class="table-responsive no-scrollbar">
+                <table class="table table-striped">
+                    <thead>
+                        <tr class="table-dark text-start">
+                            <th scope="col" (click)="sort('titulo')"
+                                [class.asc]="sortState.column === 'titulo' && sortState.direction === 'asc'"
+                                [class.desc]="sortState.column === 'titulo' && sortState.direction === 'desc'">Título
+                            </th>
+                            <th scope="col" (click)="sort('autoria')"
+                                [class.asc]="sortState.column === 'autoria' && sortState.direction === 'asc'"
+                                [class.desc]="sortState.column === 'autoria' && sortState.direction === 'desc'">Autor/a
+                            </th>
+                            <th scope="col" (click)="sort('editorial')"
+                                [class.asc]="sortState.column === 'editorial' && sortState.direction === 'asc'"
+                                [class.desc]="sortState.column === 'editorial' && sortState.direction === 'desc'">
+                                Editorial</th>
+                            <th scope="col" (click)="sort('participantes_min')"
+                                [class.asc]="sortState.column === 'participantes_min' && sortState.direction === 'asc'"
+                                [class.desc]="sortState.column === 'participantes_min' && sortState.direction === 'desc'">
+                                Personas</th>
+                            <th scope="col" (click)="sort('duracion_minutos')"
+                                [class.asc]="sortState.column === 'duracion_minutos' && sortState.direction === 'asc'"
+                                [class.desc]="sortState.column === 'duracion_minutos' && sortState.direction === 'desc'">
+                                Minutos</th>
+                            <th scope="col" (click)="sort('edad_min')"
+                                [class.asc]="sortState.column === 'edad_min' && sortState.direction === 'asc'"
+                                [class.desc]="sortState.column === 'edad_min' && sortState.direction === 'desc'">Edad
+                            </th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-        <input class="form-control" placeholder="Buscar o filtar..." type="text" [(ngModel)]="searchTerm" />
-      </div>
+                        @for(juego of filteredProducts | slice: (page - 1) * pageSize : (page - 1) * pageSize +
+                        pageSize; track juego){
 
-    <div class="card my-2">
-    @if(filteredProducts.length > 0 ){
-    <div class="table-responsive no-scrollbar">
-    <table class="table table-striped">
-        <thead>
-            <tr class="table-dark text-start">
-            <th scope="col" (click)="sort('titulo')"
-                [class.asc]="sortState.column === 'titulo' && sortState.direction === 'asc'"
-                [class.desc]="sortState.column === 'titulo' && sortState.direction === 'desc'">Título</th>              
-            <th scope="col" (click)="sort('autoria')"
-                [class.asc]="sortState.column === 'autoria' && sortState.direction === 'asc'"
-                [class.desc]="sortState.column === 'autoria' && sortState.direction === 'desc'">Autor/a</th>
-            <th scope="col" (click)="sort('editorial')"
-                [class.asc]="sortState.column === 'editorial' && sortState.direction === 'asc'"
-                [class.desc]="sortState.column === 'editorial' && sortState.direction === 'desc'">Editorial</th>
-            <th scope="col" (click)="sort('participantes_min')"
-                [class.asc]="sortState.column === 'participantes_min' && sortState.direction === 'asc'"
-                [class.desc]="sortState.column === 'participantes_min' && sortState.direction === 'desc'">Personas</th>
-            <th scope="col" (click)="sort('duracion_minutos')"
-                [class.asc]="sortState.column === 'duracion_minutos' && sortState.direction === 'asc'"
-                [class.desc]="sortState.column === 'duracion_minutos' && sortState.direction === 'desc'">Minutos</th>
-            <th scope="col" (click)="sort('edad_min')"
-                [class.asc]="sortState.column === 'edad_min' && sortState.direction === 'asc'"
-                [class.desc]="sortState.column === 'edad_min' && sortState.direction === 'desc'">Edad</th>
-            <th scope="col"></th>
-                </tr>
-        </thead>
-        <tbody>
-   
-            @for(juego of filteredProducts | slice: (page - 1) * pageSize : (page - 1) * pageSize + pageSize; track juego){
+                        <tr class="table-default">
+                            <td scope="row"><strong>{{juego.titulo}}</strong> ({{juego.fecha_publicacion}})</td>
+                            <td>{{juego.autoria}} </td>
+                            <td>{{juego.editorial}} </td>
+                            <td>{{juego.participantes_min}} - {{juego.participantes_max}} </td>
+                            <td>{{juego.duracion_minutos}}</td>
+                            <td>+ {{juego.edad_min}}</td>
+                            <td>
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" class="btn-i" [routerLink]="['/juegos', juego.id_juego]">
+                                        <img src="assets/images/icon/info.svg" alt="Más información">
+                                    </button>
 
-            <tr class="table-default">
-                <td scope="row"><strong>{{juego.titulo}}</strong> ({{juego.fecha_publicacion}})</td>
-                <td>{{juego.autoria}} </td>
-                <td>{{juego.editorial}} </td>
-                <td>{{juego.participantes_min}} - {{juego.participantes_max}} </td>
-                <td>{{juego.duracion_minutos}}</td>
-                <td>+ {{juego.edad_min}}</td>
-                <td>
-                    <div class="d-flex justify-content-end">
-                        <button type="button" class="btn-i" [routerLink]="['/juegos', juego.id_juego]">
-                            <img src="assets/images/icon/info.svg" alt="Más información" >
-                        </button>
+                                </div>
+                            </td>
 
-                    </div>
-                </td> 
-
-            </tr>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center p-2">
+                    <ngb-pagination [collectionSize]="filteredProducts.length" [(page)]="page" [pageSize]="pageSize">
+                    </ngb-pagination>
+                </div>
+            </div>
             }
-        
-
-        </tbody>
-    </table>
-    <div class="d-flex justify-content-center p-2">
-        <ngb-pagination [collectionSize]="filteredProducts.length" [(page)]="page" [pageSize]="pageSize">
-        </ngb-pagination>
-      </div>
+        </div>
     </div>
-    }
-    @else{
-    <div class="alert alert-warning" role="alert">
-        <h5 class="my-4 mx-2">❌ No hay juegos para mostrar</h5>
-    </div>
-    }
 </div>
-</div>
-</div>
-}
