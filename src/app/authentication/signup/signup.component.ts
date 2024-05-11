@@ -90,7 +90,7 @@ submitDetails() {
 setTokenCookie(token: string) {
 
   const expirationDate = new Date();
-  expirationDate.setDate(expirationDate.getDate() + 7); // Por ejemplo, expira en 7 días
+  expirationDate.setDate(expirationDate.getDate() + 7); 
 
 
   const expirationDateString = expirationDate.toUTCString();

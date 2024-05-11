@@ -42,7 +42,6 @@ export class TablonUsuarioComponent implements OnInit {
 
     this.productService.getProducts().subscribe({
       next: (data) => this.allGames = data.productos,
-      error: (error) => console.error('Error al obtener los juegos:', error)
     });
 
     this.loadUserGames();
@@ -56,7 +55,6 @@ export class TablonUsuarioComponent implements OnInit {
           this.poseidos = data.filter((juego: UserGame) => juego.estado === 'poseido');
           this.deseados = data.filter((juego: UserGame) => juego.estado === 'deseado');
         },
-        error: (error) => console.error('Error al cargar los juegos del usuario:', error)
       });
     }
   }
@@ -96,7 +94,6 @@ export class TablonUsuarioComponent implements OnInit {
 
             this.loadUserGames(); 
           },
-          error: (error) => console.error('Error al eliminar el juego:', error)
         });
       }
     }, () => {});

@@ -17,17 +17,7 @@ export const ROUTES: RouteInfo[] = [
         class: 'has-arrow',
         ddclass: 'mega-dropdown',
         extralink: false,
-         submenu: [
-        //   {
-        //     path: '/component/accordion',
-        //     title: 'Accordion',
-        //     icon: 'mdi mdi-adjust',
-        //     class: '',
-        //     extralink: false,
-        //     ddclass: "",
-        //     submenu: []
-        //   },
-         ]
+         submenu: []
         },
         {
             path: '/mapa',

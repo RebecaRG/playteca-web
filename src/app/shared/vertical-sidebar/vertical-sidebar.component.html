@@ -15,7 +15,6 @@
         }
          <!-- First level menu -->
     @for(sidebarnavItem of sidebarnavItems; track sidebarnavItem) {
-        <!-- Mostrar si el ítem no es "Iniciar Sesión" o si el usuario está autenticado -->
         @if(sidebarnavItem.title !== 'Iniciar sesión' && isLoggedIn){
           <li class="sidebar-item" [class.active]="showMenu === sidebarnavItem.title"
             (click)="sidebarnavItem.submenu.length != 0 ? '' : handleNotify()"

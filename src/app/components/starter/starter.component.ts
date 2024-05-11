@@ -21,7 +21,6 @@ export class StarterComponent {
   images =[ "login-register", "tablero", "fichas"].map((n) => `assets/images/background/${n}.jpg`);
   
   constructor(config: NgbCarouselConfig, public infoPlaytecaService: InfoPlaytecaService) {
-		// customize default values of carousels used by this component tree
 		config.showNavigationArrows = true;
 		config.showNavigationIndicators = true;
 	}

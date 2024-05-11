@@ -19,7 +19,6 @@ export class LoginComponent {
   alertMessage: string = "";
   loading: boolean = false;
   loginform = true;
-  // recoverform = false;
 
   get email() {
     return this.loginForm.get('email') as FormControl;
@@ -64,10 +63,3 @@ export class LoginComponent {
     this.showAlert = false;
   }
 }
-
-
-  // showRecoverForm() {
-  //    this.loginform = !this.loginform;
-  //    this.recoverform = !this.recoverform;
-//   //  }
-// }

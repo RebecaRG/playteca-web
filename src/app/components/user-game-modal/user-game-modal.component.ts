@@ -41,13 +41,9 @@ export class UserGameModalComponent {
 
       this.userBoardService.addJuegoToUser(nuevoJuego).subscribe({
         next: () => {
-          console.log('Nuevo juego añadido con éxito');
           this.activeModal.close();
-        },
-        error: (error) => console.error('Error al agregar el nuevo juego:', error)
+        }
       });
-    } else {
-      console.warn('Formulario inválido o sin usuario');
     }
   }
 }

@@ -6,16 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap'; 
 import { CommonModule } from '@angular/common';
 
-// import { ProgressBarComponent } from '../../shared/progress-bar/progress-bar.component';
-// import { ToastrService } from 'ngx-toastr';
-
-
 
 @Component({
   selector: 'app-list-product',
   standalone: true,
   imports: [RouterLink, FormsModule, NgbPaginationModule, CommonModule],
-  // imports: [RouterLink, ProgressBarComponent],
   templateUrl: './list-product.component.html',
   styleUrl: './list-product.component.scss'
 })

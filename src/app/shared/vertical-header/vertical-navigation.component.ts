@@ -3,14 +3,10 @@ import { Component, AfterViewInit, EventEmitter, Output, OnInit } from '@angular
 import {
   NgbModal,
 } from '@ng-bootstrap/ng-bootstrap';
-// import { TranslateService } from '@ngx-translate/core';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-
-
-
 
 @Component({
   selector: 'app-vertical-navigation',
@@ -26,7 +22,6 @@ export class VerticalNavigationComponent implements AfterViewInit, OnInit {
 
   constructor(
     private modalService: NgbModal,
-    // private translate: TranslateService,
     private authService: AuthService,
     private router: Router
   ) {}

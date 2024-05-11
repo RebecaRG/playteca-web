@@ -47,13 +47,9 @@ export class EditUserGameModalComponent implements OnInit {
   
       this.userBoardService.updateUserJuego(this.userGame.id_user_juegos, updatedGame).subscribe({
         next: () => {
-          console.log('Juego actualizado con éxito');
           this.activeModal.close(); 
         },
-        error: (error) => console.error('Error al actualizar el juego:', error)
       });
-    } else {
-      console.warn('Formulario inválido');
-    }
+    } 
   }
 }
