@@ -9,6 +9,7 @@ import { HorizontalNavigationComponent } from 'src/app/shared/horizontal-header/
 import { HorizontalSidebarComponent } from 'src/app/shared/horizontal-sidebar/horizontal-sidebar.component';
 import { VerticalNavigationComponent } from 'src/app/shared/vertical-header/vertical-navigation.component';
 import { VerticalSidebarComponent } from 'src/app/shared/vertical-sidebar/vertical-sidebar.component';
+import { StarterComponent } from 'src/app/components/starter/starter.component';
 declare var $: any;
 
 @Component({
