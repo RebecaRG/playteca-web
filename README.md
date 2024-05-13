@@ -1,27 +1,39 @@
-# Main16
+# Frontend para Playteca 🎲
+Bienvenido/a al repositorio del frontend de nuestra aplicación de juegos de mesa, Playteca. Este proyecto está desarrollado con Angular 17.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
+🚀 **Empezando**
+Para arrancar con este proyecto y explorar todas las funcionalidades que ofrece, sigue los siguientes pasos.
 
-## Development server
+📋 **Prerrequisitos**
+Antes de comenzar, asegúrate de tener instalado lo siguiente:
+- Angular 17
+- Node.js
+- Acceso al backend específico, alojado en el repositorio de GitHub **`backend-juegos-mesa`** 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+🛠️ **Instalación**
+1. Clona este repositorio en tu máquina local usando: **`git clone <url_del_repositorio>`**
 
-## Code scaffolding
+2. Navega hasta la carpeta del proyecto y ejecuta el siguiente comando para instalar todas las dependencias necesarias: **`npm install`**. Este comando instalará todas las librerías y dependencias necesarias.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. Una vez instaladas las dependencias, puedes iniciar el servidor de desarrollo ejecutando: **`ng serve`**
 
-## Build
+4. Abre tu navegador y visita **`http://localhost:4200/`** para ver la aplicación en acción.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### ⚙️ Configuración adicional para desarrollo
 
-## Running unit tests
+Para configurar el entorno localmente, sigue estos pasos:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Copia los archivos `src/environments/environment.ts.example` y `src/environments/environment.prod.ts.example` a `src/environments/environment.ts` y `src/environments/environment.development.ts` respectivamente.
 
-## Running end-to-end tests
+2. Reemplaza **`PON_TU_MAPBOX_ACCESS_TOKEN_AQUÍ`** en los archivos copiados con tu token de acceso de Mapbox.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 📚 Documentación adicional
 
-## Further help
+Para más información sobre cómo interactuar con el backend o detalles más profundos sobre cómo se construyó la aplicación, te recomendamos revisar el repositorio **`backend-juegos-mesa`** y su respectivo README.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+🔗 **Referencias**
+Para la clasificación de juegos de mesa, se ha utilizado la guía disponible en: [Guía de categorías de juegos de mesa](https://asociacionludo.com/storage/guides/Guía%20de%20categorías%20de%20juegos%20de%20mesa.pdf).
+
+## 🤝 Contribuciones
+
+¡Tus contribuciones son bienvenidas! Si tienes ideas sobre cómo mejorar esta aplicación o deseas agregar nuevas funcionalidades, no dudes en crear un pull request o abrir un issue.
