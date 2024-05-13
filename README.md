@@ -2,15 +2,18 @@
 Bienvenido/a al repositorio del frontend de nuestra aplicación de juegos de mesa, Playteca. Este proyecto está desarrollado con Angular 17.
 
 🚀 **Empezando**
+
 Para arrancar con este proyecto y explorar todas las funcionalidades que ofrece, sigue los siguientes pasos.
 
 📋 **Prerrequisitos**
+
 Antes de comenzar, asegúrate de tener instalado lo siguiente:
 - Angular 17
 - Node.js
 - Acceso al backend específico, alojado en el repositorio de GitHub **`backend-juegos-mesa`** 
 
 🛠️ **Instalación**
+
 1. Clona este repositorio en tu máquina local usando: **`git clone <url_del_repositorio>`**
 
 2. Navega hasta la carpeta del proyecto y ejecuta el siguiente comando para instalar todas las dependencias necesarias: **`npm install`**. Este comando instalará todas las librerías y dependencias necesarias.
@@ -32,6 +35,7 @@ Para configurar el entorno localmente, sigue estos pasos:
 Para más información sobre cómo interactuar con el backend o detalles más profundos sobre cómo se construyó la aplicación, te recomendamos revisar el repositorio **`backend-juegos-mesa`** y su respectivo README.
 
 🔗 **Referencias**
+
 Para la clasificación de juegos de mesa, se ha utilizado la guía disponible en: [Guía de categorías de juegos de mesa](https://asociacionludo.com/storage/guides/Guía%20de%20categorías%20de%20juegos%20de%20mesa.pdf).
 
 ## 🤝 Contribuciones
