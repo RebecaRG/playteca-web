@@ -1,5 +1,5 @@
 # Frontend para Playteca 🎲
-Bienvenido/a al repositorio del frontend de nuestra aplicación de juegos de mesa, Playteca. Este proyecto está desarrollado con Angular 17.
+Bienvenido/a al repositorio del frontend de la aplicación de juegos de mesa, Playteca. Este proyecto está desarrollado con Angular 17.
 
 🚀 **Empezando**
 
@@ -38,6 +38,6 @@ Para más información sobre cómo interactuar con el backend o detalles más pr
 
 Para la clasificación de juegos de mesa, se ha utilizado la guía disponible en: [Guía de categorías de juegos de mesa](https://asociacionludo.com/storage/guides/Guía%20de%20categorías%20de%20juegos%20de%20mesa.pdf).
 
-## 🤝 Contribuciones
+## 🚨 Aviso Importante
 
-¡Tus contribuciones son bienvenidas! Si tienes ideas sobre cómo mejorar esta aplicación o deseas agregar nuevas funcionalidades, no dudes en crear un pull request o abrir un issue.
+Este proyecto utiliza una plantilla de diseño web comprada bajo licencia. El uso de esta plantilla está restringido a este proyecto y no se permite su reutilización o redistribución sin una licencia apropiada. Asegúrate de obtener la licencia correspondiente si deseas utilizar esta plantilla en tus propios proyectos.
