@@ -41,3 +41,11 @@ Para la clasificación de juegos de mesa, se ha utilizado la guía disponible en
 ## 🚨 Aviso Importante
 
 Este proyecto utiliza una plantilla de diseño web comprada bajo licencia. El uso de esta plantilla está restringido a este proyecto y no se permite su reutilización o redistribución sin una licencia apropiada. Asegúrate de obtener la licencia correspondiente si deseas utilizar esta plantilla en tus propios proyectos.
+
+## 📷 Ejemplos de la web
+![Home](/playteca_fotos_web/playteca_1.png)
+![Listado juegos de mesa](/playteca_fotos_web/playteca_2.png)
+![Registro](/playteca_fotos_web/playteca_10.png)
+![Listas de usuari@s](/playteca_fotos_web/playteca_11.png)
+
+
